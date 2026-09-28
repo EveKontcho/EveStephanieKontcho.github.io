@@ -9,7 +9,7 @@
 const PROJECTS_DATA = [
   {
     id: "predictive-epidemiology",
-    title: "Predictive Epidemiology: Chronic Disease Risk Zones",
+    title: "Predictive Epidemiology: Forecasting Chronic Disease Risk Zones using XGBoost",
     category: "ml",
     categoryLabel: "Machine Learning & AI",
     badge: "0.892 ROC-AUC",
@@ -18,43 +18,147 @@ const PROJECTS_DATA = [
       { label: "Model Performance", val: "0.892 ROC-AUC" },
       { label: "Vulnerable Communities", val: "84.7% Recall" }
     ],
-    tags: ["Python", "XGBoost", "SQL (SQLite)", "Scikit-Learn", "Epidemiology"],
+    tags: ["SQL (SQLite)", "Python", "XGBoost", "Scikit-Learn", "Epidemiology"],
     modal: {
-      tagline: "Proactive Geospatial Risk Stratification for Targeted Public Health Intervention",
+      tagline: "Translating Complex Demographic & Socioeconomic Metrics into Targeted Public Health Interventions",
       metrics: [
         { label: "ROC-AUC", val: "0.892" },
         { label: "Precision", val: "81.4%" },
         { label: "Recall", val: "84.7%" },
         { label: "F1-Score", val: "0.830" }
       ],
-      problem: "Public health resources are finite. Traditional healthcare delivery often reacts after chronic disease prevalence spikes rather than intervening proactively. Public health agencies needed an evidence-based system to pinpoint localized census tracts at highest risk for chronic disease (specifically diabetes) using socioeconomic, demographic, and housing vulnerability factors.",
-      methodology: "Engineered an SQLite data pipeline to merge CDC PLACES prevalence metrics with CDC Social Vulnerability Index (SVI) tracts via FIPS codes. Imputed CDC sentinel missing values (-999) with median socioeconomic statistics and engineered a binary classification target for tracts in the 75th percentile of diabetes prevalence. Trained and evaluated a stratified XGBoost classifier, identifying uninsured rates (EP_UNINSUR) and poverty percentages (EP_POV) as the primary systemic drivers of disease vulnerability.",
-      codeSnippet: `# CDC PLACES & SVI Risk Modeling Pipeline with XGBoost
-import sqlite3
-import pandas as pd
-import numpy as np
-from xgboost import XGBClassifier
-from sklearn.model_selection import train_test_split
-from sklearn.impute import SimpleImputer
-from sklearn.metrics import classification_report, roc_auc_score
+      githubUrl: "https://github.com/EveKontcho/EveStephanieKontcho.github.io/blob/main/predictive_epidemiology.ipynb",
+      demoUrl: "predictive_epidemiology.html",
+      customHtml: `
+        <!-- Quantitative Metrics Grid -->
+        <div class="modal-overview-grid">
+          <div class="modal-stat-box">
+            <div class="modal-stat-box-val mono-font">0.892</div>
+            <div class="modal-stat-box-label">ROC-AUC Score</div>
+          </div>
+          <div class="modal-stat-box">
+            <div class="modal-stat-box-val mono-font">81.4%</div>
+            <div class="modal-stat-box-label">Precision Rate</div>
+          </div>
+          <div class="modal-stat-box">
+            <div class="modal-stat-box-val mono-font">84.7%</div>
+            <div class="modal-stat-box-label">Recall (Vulnerable Zones)</div>
+          </div>
+          <div class="modal-stat-box">
+            <div class="modal-stat-box-val mono-font">0.830</div>
+            <div class="modal-stat-box-label">F1-Score</div>
+          </div>
+        </div>
 
-# 1. Feature Engineering & Sentinel Value Imputation
+        <!-- Project Overview -->
+        <h4 class="modal-section-heading">Project Overview</h4>
+        <div class="tech-stack-pill-box">
+          <span>Tech Stack:</span>
+          <strong style="color: #ffffff;">SQL (SQLite)</strong> | 
+          <strong style="color: #ffffff;">Python (pandas, scikit-learn, XGBoost)</strong> | 
+          <strong style="color: #ffffff;">Data Visualization</strong>
+        </div>
+        <p class="modal-text">
+          Public health resources are finite. This project demonstrates how to use socioeconomic, environmental, and demographic data to proactively identify localized geographic areas at the highest risk for chronic disease progression, specifically diabetes, before outbreaks occur. By leveraging public datasets, this pipeline translates complex demographic metrics into actionable, predictive insights for targeted intervention.
+        </p>
+
+        <!-- 1. Data Acquisition & Architecture -->
+        <h4 class="modal-section-heading">1. Data Acquisition & Architecture</h4>
+        <p class="modal-text">
+          The foundation of this model relies on merging two critical public health datasets:
+        </p>
+        <ul class="modal-list">
+          <li><strong>CDC PLACES:</strong> Provides census tract-level prevalence estimates for conditions like diabetes, which serves as the target variable.</li>
+          <li><strong>CDC SVI (Social Vulnerability Index):</strong> Provides census tract-level metrics on socioeconomic status, housing, and minority status, serving as the predictive features.</li>
+        </ul>
+        <p class="modal-text">
+          Using an SQLite database, the datasets were unified via an <code>INNER JOIN</code> on the census tract FIPS codes. This architectural step ensures that geographic integrity is maintained before any statistical modeling occurs:
+        </p>
+
+        <div class="code-header-bar">
+          <span class="code-lang-label">SQL — Census Tract Unification Query</span>
+        </div>
+        <pre class="code-block-preview"><code class="language-sql">SELECT 
+    p.FIPS,
+    p.DIABETES_CrudePrev AS diabetes_prev,
+    s.E_POV AS count_poverty,
+    s.EP_POV AS pct_poverty,
+    s.EP_UNEMP AS pct_unemployed,
+    s.EP_PCI AS per_capita_income,
+    s.EP_NOHSDP AS pct_no_highschool,
+    s.EP_UNINSUR AS pct_uninsured,
+    s.RPL_THEMES AS overall_svi
+FROM cdc_places p
+INNER JOIN cdc_svi s 
+    ON p.FIPS = s.FIPS
+WHERE p.StateAbbr != 'US';</code></pre>
+
+        <!-- 2. Data Wrangling & Feature Engineering -->
+        <h4 class="modal-section-heading">2. Data Wrangling & Feature Engineering</h4>
+        <p class="modal-text">
+          Once extracted into a pandas dataframe, the data required rigorous cleaning. The CDC SVI dataset uses dummy values (e.g., <code>-999</code>) to represent missing census tract data.
+        </p>
+        <p class="modal-text" style="margin-top: 0.6rem;"><strong>Key engineering steps included:</strong></p>
+        <ol class="modal-list" style="list-style-type: decimal;">
+          <li><strong>Imputation:</strong> Replacing dummy values with <code>NaN</code> and imputing the median for socioeconomic features to prevent model skewing.</li>
+          <li><strong>Target Definition:</strong> Converting the continuous diabetes prevalence percentage into a binary classification target. Tracts falling in the top 25% of prevalence were flagged as "High Risk."</li>
+        </ol>
+
+        <div class="code-header-bar">
+          <span class="code-lang-label">Python — Cleaning & Quantile Thresholding</span>
+        </div>
+        <pre class="code-block-preview"><code class="language-python">import numpy as np
+import pandas as pd
+from sklearn.impute import SimpleImputer
+
+# Replace CDC missing value sentinels (-999) with NaN
 df.replace(-999.0, np.nan, inplace=True)
+
+# Separate features and continuous target
 X = df.drop(columns=['FIPS', 'diabetes_prev'])
 y_continuous = df['diabetes_prev']
 
+# Impute missing values with median column values
 imputer = SimpleImputer(strategy='median')
 X_imputed = pd.DataFrame(imputer.fit_transform(X), columns=X.columns)
 
-# 2. 75th Percentile High-Risk Binary Classification Target
+# Define high-risk threshold as the 75th percentile (top 25% prevalence)
 threshold = y_continuous.quantile(0.75)
 y = (y_continuous >= threshold).astype(int)
 
-# 3. Stratified Split & XGBoost Classification
+print(f"High-risk classification threshold: {threshold:.2f}% prevalence")
+print(f"Class distribution:\\n{y.value_counts(normalize=True)}")</code></pre>
+
+        <!-- Notebook Visualizations Part 1: EDA -->
+        <h4 class="modal-section-heading">Exploratory Data Analysis Visualizations</h4>
+        <div class="modal-figure">
+          <img src="epidemiology_eda_charts.png" alt="Exploratory Data Analysis: Diabetes Prevalence Distribution, Correlation Heatmap, and Poverty vs Diabetes Scatter Plot" loading="lazy">
+          <div class="modal-figure-caption">
+            Figure 1: (Left) Census tract diabetes prevalence distribution highlighting the 75th percentile high-risk threshold; (Center) Pearson correlation heatmap across CDC SVI indicators; (Right) Regression plot confirming strong positive covariance between poverty rates and localized diabetes burden.
+          </div>
+        </div>
+
+        <!-- 3. Predictive Modeling with XGBoost -->
+        <h4 class="modal-section-heading">3. Predictive Modeling with XGBoost</h4>
+        <p class="modal-text">
+          An XGBoost classifier was selected for its high execution speed and its ability to handle non-linear relationships inherent in complex, real-world health data.
+        </p>
+        <p class="modal-text" style="margin-top: 0.6rem;">
+          The data was split using <code>train_test_split</code>, employing stratification on the target variable to ensure the training and testing sets maintained a consistent proportion of high-risk zones:
+        </p>
+
+        <div class="code-header-bar">
+          <span class="code-lang-label">Python — Stratified Train/Test Split & XGBoost Training</span>
+        </div>
+        <pre class="code-block-preview"><code class="language-python">from sklearn.model_selection import train_test_split
+from xgboost import XGBClassifier
+
+# Stratified split to preserve class ratio
 X_train, X_test, y_train, y_test = train_test_split(
     X_imputed, y, test_size=0.2, random_state=42, stratify=y
 )
 
+# Initialize XGBoost classifier with tuned hyperparameters
 model = XGBClassifier(
     n_estimators=100,
     max_depth=5,
@@ -64,13 +168,77 @@ model = XGBClassifier(
     random_state=42,
     eval_metric='logloss'
 )
-model.fit(X_train, y_train)
 
-# Evaluation
-y_pred_proba = model.predict_proba(X_test)[:, 1]
-print(f"ROC-AUC: {roc_auc_score(y_test, y_pred_proba):.3f}")`,
-      githubUrl: "https://github.com/EveKontcho/EveStephanieKontcho.github.io/blob/main/predictive_epidemiology.ipynb",
-      demoUrl: "predictive_epidemiology.html"
+# Fit model to training data
+model.fit(X_train, y_train)</code></pre>
+
+        <!-- 4. Evaluation & Epidemiological Impact -->
+        <h4 class="modal-section-heading">4. Evaluation & Epidemiological Impact</h4>
+        <p class="modal-text">
+          The model was evaluated using precision, recall, and ROC-AUC scores to account for the operational cost of false positives versus false negatives in public health planning:
+        </p>
+
+        <!-- Evaluation Table -->
+        <div class="modal-table-container">
+          <table class="modal-table">
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>Score</th>
+                <th>Public Health Context</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong style="color: var(--accent-cyan);">ROC-AUC</strong></td>
+                <td><span class="mono-font" style="color: var(--accent-primary); font-weight: 700;">0.892</span></td>
+                <td>Strong capability to differentiate high-risk tracts from baseline communities.</td>
+              </tr>
+              <tr>
+                <td><strong style="color: var(--accent-cyan);">Precision</strong></td>
+                <td><span class="mono-font" style="color: var(--accent-primary); font-weight: 700;">0.814</span></td>
+                <td>Minimizes wasted clinical interventions by ensuring high accuracy on flagged areas.</td>
+              </tr>
+              <tr>
+                <td><strong style="color: var(--accent-cyan);">Recall</strong></td>
+                <td><span class="mono-font" style="color: var(--accent-primary); font-weight: 700;">0.847</span></td>
+                <td>Captures the vast majority of genuinely vulnerable communities without oversight.</td>
+              </tr>
+              <tr>
+                <td><strong style="color: var(--accent-cyan);">F1-Score</strong></td>
+                <td><span class="mono-font" style="color: var(--accent-primary); font-weight: 700;">0.830</span></td>
+                <td>Balanced harmonic measure of overall classification effectiveness.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Notebook Visualizations Part 2: Model Performance -->
+        <h4 class="modal-section-heading">Model Performance Visualizations & Diagnostic Curves</h4>
+        <div class="modal-figure">
+          <img src="epidemiology_model_eval_charts.png" alt="XGBoost Feature Importance, ROC Curve AUC 0.89, and Confusion Matrix" loading="lazy">
+          <div class="modal-figure-caption">
+            Figure 2: (Left) XGBoost feature importance chart showing socioeconomic risk drivers; (Center) ROC curve demonstrating strong discriminative ability with AUC = 0.89; (Right) Prediction confusion matrix evaluating test set classification.
+          </div>
+        </div>
+
+        <!-- Key Drivers Analysis -->
+        <h4 class="modal-section-heading">Key Socioeconomic Predictors & Policy Insights</h4>
+        <p class="modal-text">
+          In public health, extracting feature importance is critical; understanding <em>why</em> a community is at risk is as important as the prediction itself. By analyzing the model's feature importance chart, we identify the strongest socioeconomic predictors of localized risk:
+        </p>
+        <ul class="modal-list">
+          <li><strong>Uninsured Rate (<code>EP_UNINSUR</code>):</strong> Greatest weight in predicting high-risk zones, pointing to systemic gaps in preventative care access.</li>
+          <li><strong>Poverty Percentage (<code>EP_POV</code>):</strong> Strong secondary driver, reflecting financial barriers to healthy foods and medical management.</li>
+          <li><strong>Low High School Completion (<code>EP_NOHSDP</code>):</strong> Highly correlated with long-term health literacy outcomes.</li>
+        </ul>
+
+        <!-- Actionable Impact -->
+        <h4 class="modal-section-heading">Policy Shift & Actionable Public Health Allocation</h4>
+        <p class="modal-text" style="border-left: 3px solid var(--accent-emerald); padding-left: 1rem; color: #ffffff;">
+          This shift allows public health officials to transition from reactive care to proactive, evidence-based resource allocation, deploying mobile screening units and community nutrition programs directly to high-risk census tracts.
+        </p>
+      `
     }
   },
   {
@@ -498,27 +666,44 @@ function openProjectModal(projectId) {
   document.getElementById("modalProjectTitle").textContent = project.title;
   document.getElementById("modalProjectTagline").textContent = project.modal.tagline;
 
-  // Render Stats Grid
-  const statsContainer = document.getElementById("modalMetricsGrid");
-  statsContainer.innerHTML = project.modal.metrics.map(m => `
-    <div class="modal-stat-box">
-      <div class="modal-stat-box-val mono-font">${m.val}</div>
-      <div class="modal-stat-box-label">${m.label}</div>
-    </div>
-  `).join("");
-
-  // Problem & Methodology
-  document.getElementById("modalProblemStatement").textContent = project.modal.problem;
-  document.getElementById("modalMethodology").textContent = project.modal.methodology;
-
-  // Code Snippet
-  document.getElementById("modalCodeBlock").textContent = project.modal.codeSnippet;
+  const dynamicBody = document.getElementById("modalDynamicBody");
+  if (dynamicBody) {
+    if (project.modal.customHtml) {
+      dynamicBody.innerHTML = project.modal.customHtml;
+    } else {
+      dynamicBody.innerHTML = `
+        <div class="modal-overview-grid" id="modalMetricsGrid">
+          ${project.modal.metrics.map(m => `
+            <div class="modal-stat-box">
+              <div class="modal-stat-box-val mono-font">${m.val}</div>
+              <div class="modal-stat-box-label">${m.label}</div>
+            </div>
+          `).join("")}
+        </div>
+        <h4 class="modal-section-heading">Business Problem & Context</h4>
+        <p class="modal-text">${escapeHtml(project.modal.problem || "")}</p>
+        <h4 class="modal-section-heading">Statistical Modeling & Architecture</h4>
+        <p class="modal-text">${escapeHtml(project.modal.methodology || "")}</p>
+        <h4 class="modal-section-heading">Production Code & Model Pipeline</h4>
+        <pre class="code-block-preview"><code>${escapeHtml(project.modal.codeSnippet || "")}</code></pre>
+      `;
+    }
+  }
 
   // Action links
   document.getElementById("modalGithubBtn").href = project.modal.githubUrl;
   document.getElementById("modalDemoBtn").href = project.modal.demoUrl;
 
   modal.showModal();
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
 function setupModal() {

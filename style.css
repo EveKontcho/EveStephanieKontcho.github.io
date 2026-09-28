@@ -1000,8 +1000,8 @@ dialog.project-modal {
   border-radius: 16px;
   background: var(--bg-surface);
   color: var(--text-primary);
-  max-width: 780px;
-  width: 90%;
+  max-width: 880px;
+  width: 92%;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.95), 0 0 35px -5px rgba(59, 130, 246, 0.4);
 }
 
@@ -1099,6 +1099,125 @@ dialog.project-modal::backdrop {
   color: #93b4e6;
   overflow-x: auto;
   margin-top: 0.75rem;
+}
+
+/* Modal Figures & Visualizations */
+.modal-figure {
+  margin: 1.25rem 0 1.5rem;
+  background: #01040a;
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 0.85rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.modal-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.modal-figure-caption {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 0.75rem;
+  line-height: 1.5;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Modal Metrics Table */
+.modal-table-container {
+  overflow-x: auto;
+  margin: 1rem 0 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  background: #02050b;
+}
+
+.modal-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.88rem;
+}
+
+.modal-table th {
+  background: var(--bg-subtle);
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.modal-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+.modal-table tr:last-child td {
+  border-bottom: none;
+}
+
+.modal-table tr:hover td {
+  background: rgba(59, 130, 246, 0.05);
+}
+
+/* Code Header Bar */
+.code-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding: 0.4rem 0.85rem;
+  background: #060d1d;
+  border: 1px solid var(--border-subtle);
+  border-bottom: none;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.code-header-bar + .code-block-preview {
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.code-lang-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.modal-list {
+  padding-left: 1.35rem;
+  margin: 0.6rem 0 1.1rem;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.modal-list li {
+  margin-bottom: 0.45rem;
+}
+
+.tech-stack-pill-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0 1rem;
+  padding: 0.35rem 0.85rem;
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  color: var(--accent-cyan);
+  font-family: 'JetBrains Mono', monospace;
 }
 
 .modal-footer {
