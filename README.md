@@ -15,17 +15,3 @@ A modern, high-performance, and responsive portfolio website designed for **Data
 - **📬 One-Click Copy & Working Contact Form**: Copy email address with animated toast feedback and interactive message submission.
 - **📱 Fully Responsive**: Custom breakpoints engineered for desktop, tablet, and mobile viewing.
 
----
-
-## 📂 Project Structure
-
-```text
-First portfolio/
-├── index.html       # Semantic HTML5 layout, hero, metrics, projects, and modal dialog
-├── style.css        # Black & electric blue design tokens, grid background & animations
-├── script.js        # Dynamic project registry, modal controller, Chart.js engine & theme logic
-├── resume.pdf       # Your downloadable/viewable PDF resume document
-└── README.md        # Documentation and customization guide
-```
-
-\
