@@ -8,6 +8,72 @@
 // ==========================================
 const PROJECTS_DATA = [
   {
+    id: "predictive-epidemiology",
+    title: "Predictive Epidemiology: Chronic Disease Risk Zones",
+    category: "ml",
+    categoryLabel: "Machine Learning & AI",
+    badge: "0.892 ROC-AUC",
+    description: "Public health risk stratification pipeline integrating CDC PLACES and CDC SVI census tract datasets with SQLite and XGBoost to proactively identify high-risk chronic disease zones.",
+    previewStats: [
+      { label: "Model Performance", val: "0.892 ROC-AUC" },
+      { label: "Vulnerable Communities", val: "84.7% Recall" }
+    ],
+    tags: ["Python", "XGBoost", "SQL (SQLite)", "Scikit-Learn", "Epidemiology"],
+    modal: {
+      tagline: "Proactive Geospatial Risk Stratification for Targeted Public Health Intervention",
+      metrics: [
+        { label: "ROC-AUC", val: "0.892" },
+        { label: "Precision", val: "81.4%" },
+        { label: "Recall", val: "84.7%" },
+        { label: "F1-Score", val: "0.830" }
+      ],
+      problem: "Public health resources are finite. Traditional healthcare delivery often reacts after chronic disease prevalence spikes rather than intervening proactively. Public health agencies needed an evidence-based system to pinpoint localized census tracts at highest risk for chronic disease (specifically diabetes) using socioeconomic, demographic, and housing vulnerability factors.",
+      methodology: "Engineered an SQLite data pipeline to merge CDC PLACES prevalence metrics with CDC Social Vulnerability Index (SVI) tracts via FIPS codes. Imputed CDC sentinel missing values (-999) with median socioeconomic statistics and engineered a binary classification target for tracts in the 75th percentile of diabetes prevalence. Trained and evaluated a stratified XGBoost classifier, identifying uninsured rates (EP_UNINSUR) and poverty percentages (EP_POV) as the primary systemic drivers of disease vulnerability.",
+      codeSnippet: `# CDC PLACES & SVI Risk Modeling Pipeline with XGBoost
+import sqlite3
+import pandas as pd
+import numpy as np
+from xgboost import XGBClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.impute import SimpleImputer
+from sklearn.metrics import classification_report, roc_auc_score
+
+# 1. Feature Engineering & Sentinel Value Imputation
+df.replace(-999.0, np.nan, inplace=True)
+X = df.drop(columns=['FIPS', 'diabetes_prev'])
+y_continuous = df['diabetes_prev']
+
+imputer = SimpleImputer(strategy='median')
+X_imputed = pd.DataFrame(imputer.fit_transform(X), columns=X.columns)
+
+# 2. 75th Percentile High-Risk Binary Classification Target
+threshold = y_continuous.quantile(0.75)
+y = (y_continuous >= threshold).astype(int)
+
+# 3. Stratified Split & XGBoost Classification
+X_train, X_test, y_train, y_test = train_test_split(
+    X_imputed, y, test_size=0.2, random_state=42, stratify=y
+)
+
+model = XGBClassifier(
+    n_estimators=100,
+    max_depth=5,
+    learning_rate=0.05,
+    subsample=0.8,
+    colsample_bytree=0.8,
+    random_state=42,
+    eval_metric='logloss'
+)
+model.fit(X_train, y_train)
+
+# Evaluation
+y_pred_proba = model.predict_proba(X_test)[:, 1]
+print(f"ROC-AUC: {roc_auc_score(y_test, y_pred_proba):.3f}")`,
+      githubUrl: "https://github.com/EveKontcho/EveStephanieKontcho.github.io/blob/main/predictive_epidemiology.ipynb",
+      demoUrl: "predictive_epidemiology.html"
+    }
+  },
+  {
     id: "customer-churn",
     title: "Predictive Customer Churn & LTV Engine",
     category: "ml",
@@ -127,48 +193,6 @@ def analyze_transcript_tone(paragraphs):
         logits = model(**inputs).logits
         probabilities = torch.softmax(logits, dim=1)
     return probabilities.cpu().numpy() # [Positive, Negative, Neutral]`,
-      githubUrl: "https://github.com",
-      demoUrl: "https://github.com"
-    }
-  },
-  {
-    id: "healthcare-classifier",
-    title: "Clinical Risk Stratification & Outcome Classifier",
-    category: "ml",
-    categoryLabel: "Machine Learning & AI",
-    badge: "0.91 Sensitivity",
-    description: "Deep learning TabNet classifier predicting 30-day patient hospital readmission risks, accounting for severe class imbalance and medical covariates.",
-    previewStats: [
-      { label: "Patient Cohort", val: "85,000 Admissions" },
-      { label: "Focal Loss", val: "Imbalance Optimized" }
-    ],
-    tags: ["PyTorch", "TabNet", "Optuna", "Pandas", "Scikit-Learn"],
-    modal: {
-      tagline: "Interpretable Deep Learning for Healthcare Decision Support",
-      metrics: [
-        { label: "Sensitivity / Recall", val: "91.4%" },
-        { label: "Specificity", val: "89.2%" },
-        { label: "AUROC", val: "0.931" }
-      ],
-      problem: "Hospitals face severe penalties for preventable 30-day patient readmissions, but tabular electronic health records (EHR) suffer from extreme noise and missing values.",
-      methodology: "Implemented self-supervised tabular deep learning (TabNet) with sequential attention. Utilized Bayesian hyperparameter optimization via Optuna and Focal Loss to counteract a 9:1 class imbalance, generating clinical risk confidence intervals.",
-      codeSnippet: `# TabNet Model with Focal Loss for Imbalanced Medical Cohorts
-from pytorch_tabnet.tab_model import TabNetClassifier
-import torch.nn as nn
-
-clf = TabNetClassifier(
-    n_d=64, n_a=64, n_steps=5,
-    gamma=1.5,
-    lambda_sparse=1e-4,
-    optimizer_fn=torch.optim.AdamW,
-    optimizer_params=dict(lr=2e-2, weight_decay=1e-5),
-    mask_type='entmax'
-)
-clf.fit(
-    X_train=X_train, y_train=y_train,
-    eval_set=[(X_val, y_val)],
-    patience=20, max_epochs=150
-)`,
       githubUrl: "https://github.com",
       demoUrl: "https://github.com"
     }
