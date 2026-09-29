@@ -526,6 +526,48 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.55;
 }
 
+.gpa-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  border: 1.5px solid var(--border-dark);
+  background: var(--bg-base);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.cert-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.45rem;
+}
+
+.cert-chip {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.cert-chip.active {
+  border-color: var(--border-dark);
+  background: var(--bg-base);
+}
+
+.cert-chip.in-progress {
+  border: 1px dashed var(--border-medium);
+  color: var(--text-secondary);
+}
+
 /* ==========================================================================
    Project Section & Live Model Sandbox
    ========================================================================== */
