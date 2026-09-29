@@ -360,10 +360,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-title .hero-sub-name {
   display: block;
-  font-size: 0.42em;
-  letter-spacing: 0.12em;
+  font-size: 0.36em;
+  letter-spacing: 0.14em;
   color: var(--text-muted);
-  margin-bottom: 0.4rem;
+  margin-top: 0.65rem;
+  font-weight: 700;
 }
 
 .hero-bio {
