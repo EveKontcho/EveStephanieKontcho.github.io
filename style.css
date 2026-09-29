@@ -1,41 +1,68 @@
 /* ==========================================================================
-   Editorial Presentation Design System (Inspired by Clean Architectural Slides)
-   Palette: Warm Gallery Stone Grey (#ECEAE5) & Dense Charcoal Black (#121212)
+   Eve Kontcho Portfolio - Editorial Minimalist Design System
+   Aesthetics: Warm Gallery Stone Grey (#ECEAE5), Architectural Typography,
+   Sleek Wireline Accents & Capsule Stadium Elements
    ========================================================================== */
 
 :root {
-  --bg-page: #ECEAE5;
-  --bg-slide: #F7F6F2;
+  /* Editorial Presentation Theme (Light / Warm Stone Default) */
+  --bg-base: #ECEAE5;
   --bg-surface: #FFFFFF;
+  --bg-surface-elevated: #F6F5F1;
   --bg-subtle: #E2DFD8;
-  --text-primary: #121212;
-  --text-secondary: #484848;
-  --text-muted: #727272;
+  --bg-glass: rgba(236, 234, 229, 0.92);
+  
+  --border-subtle: rgba(26, 26, 26, 0.12);
+  --border-medium: rgba(26, 26, 26, 0.28);
   --border-dark: #1A1A1A;
-  --border-subtle: rgba(26, 26, 26, 0.16);
+  
+  --text-primary: #121212;
+  --text-secondary: #4A4A47;
+  --text-muted: #767672;
+  
+  --accent-primary: #121212;
   --accent-blue: #1D4ED8;
+  --accent-emerald: #059669;
+  
   --pill-bg: #ECEAE5;
   --pill-border: #1A1A1A;
-  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.05);
-  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.08);
+  
+  --shadow-subtle: 0 2px 10px rgba(0, 0, 0, 0.03);
+  --shadow-card: 0 6px 24px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.08);
 }
 
 [data-theme="dark"] {
-  --bg-page: #141414;
-  --bg-slide: #1A1A1A;
-  --bg-surface: #222222;
+  /* Editorial Minimalist Dark Theme */
+  --bg-base: #141414;
+  --bg-surface: #1E1E1E;
+  --bg-surface-elevated: #262626;
   --bg-subtle: #2C2C2C;
+  --bg-glass: rgba(20, 20, 20, 0.92);
+  
+  --border-subtle: rgba(245, 245, 243, 0.12);
+  --border-medium: rgba(245, 245, 243, 0.28);
+  --border-dark: #F5F5F3;
+  
   --text-primary: #F5F5F3;
-  --text-secondary: #B0B0AE;
-  --text-muted: #80807E;
-  --border-dark: #ECEAE5;
-  --border-subtle: rgba(245, 245, 243, 0.18);
+  --text-secondary: #B6B6B3;
+  --text-muted: #82827F;
+  
+  --accent-primary: #F5F5F3;
   --accent-blue: #60A5FA;
-  --pill-bg: #141414;
+  --accent-emerald: #10B981;
+  
+  --pill-bg: #1E1E1E;
   --pill-border: #F5F5F3;
-  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.4);
-  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.6);
+  
+  --shadow-subtle: 0 2px 10px rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 6px 24px rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.7);
 }
+
+/* ==========================================================================
+   Base & Reset
+   ========================================================================== */
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -46,32 +73,33 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
-  background-color: var(--bg-page);
+  background-color: var(--bg-base);
   color: var(--text-primary);
 }
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  line-height: 1.6;
-  background-color: var(--bg-page);
+  line-height: 1.65;
+  background-color: var(--bg-base);
   color: var(--text-primary);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 a {
   color: inherit;
   text-decoration: none;
-  transition: color 0.15s ease, opacity 0.15s ease;
+  transition: color 0.2s ease, opacity 0.2s ease;
 }
 
 a:hover {
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 /* ==========================================================================
-   Typography
+   Typography & Utilities
    ========================================================================== */
 
 h1, h2, h3, h4, h5, h6 {
@@ -79,7 +107,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: -0.025em;
-  line-height: 1.1;
+  line-height: 1.15;
   color: var(--text-primary);
 }
 
@@ -88,8 +116,136 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.02em;
 }
 
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section {
+  padding: 6rem 0;
+  position: relative;
+}
+
+.section-header {
+  margin-bottom: 3.5rem;
+}
+
+.section-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+}
+
+.section-title {
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  margin-bottom: 0.85rem;
+  color: var(--text-primary);
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 680px;
+  line-height: 1.6;
+}
+
 /* ==========================================================================
-   Floating Presentation Header
+   Pill Buttons & Badges
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.65rem 1.35rem;
+  border-radius: 9999px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1.5px solid var(--border-dark);
+}
+
+.btn-primary {
+  background: var(--text-primary);
+  color: var(--bg-base);
+  border-color: var(--text-primary);
+}
+
+.btn-primary:hover {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-subtle);
+}
+
+.btn-secondary {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border-color: var(--border-dark);
+}
+
+.btn-secondary:hover {
+  background: var(--text-primary);
+  color: var(--bg-base);
+  border-color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
+.btn-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  border: 1.5px solid var(--border-dark);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-icon:hover {
+  background: var(--text-primary);
+  color: var(--bg-base);
+}
+
+.badge-capsule {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 9999px;
+  border: 1.5px solid var(--border-dark);
+  background: var(--bg-surface);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
+}
+
+.badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #059669;
+}
+
+/* ==========================================================================
+   Header Navigation
    ========================================================================== */
 
 .nav-header {
@@ -98,24 +254,18 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(236, 234, 229, 0.88);
+  background: var(--bg-glass);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-subtle);
-  transition: background 0.3s ease;
-}
-
-[data-theme="dark"] .nav-header {
-  background: rgba(20, 20, 20, 0.88);
+  border-bottom: 1.5px solid var(--border-subtle);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .nav-container {
-  max-width: 1360px;
-  margin: 0 auto;
-  padding: 0.85rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 72px;
 }
 
 .brand-link {
@@ -123,40 +273,42 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   gap: 0.75rem;
   font-weight: 800;
-  font-size: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  font-size: 0.95rem;
   color: var(--text-primary);
 }
 
 .brand-avatar {
-  width: 28px;
-  height: 28px;
+  width: 34px;
+  height: 34px;
   border-radius: 9999px;
   background: var(--text-primary);
-  color: var(--bg-page);
+  color: var(--bg-base);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 900;
+  letter-spacing: 0.02em;
 }
 
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 1.75rem;
+  gap: 2rem;
   list-style: none;
 }
 
 .nav-link {
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   color: var(--text-muted);
   position: relative;
-  padding: 0.3rem 0;
+  padding: 0.35rem 0;
+  transition: color 0.2s ease;
 }
 
 .nav-link:hover,
@@ -167,7 +319,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-link.active::after {
   content: '';
   position: absolute;
-  bottom: -2px;
+  bottom: 0;
   left: 0;
   right: 0;
   height: 2px;
@@ -177,26 +329,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 1rem;
-}
-
-.btn-icon {
-  background: transparent;
-  border: 1px solid var(--border-subtle);
-  border-radius: 9999px;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: var(--text-primary);
-  transition: all 0.2s ease;
-}
-
-.btn-icon:hover {
-  border-color: var(--text-primary);
-  transform: scale(1.05);
+  gap: 0.85rem;
 }
 
 .mobile-toggle {
@@ -204,866 +337,602 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   Presentation Slide Container & Universal Corners
+   Hero Section
    ========================================================================== */
 
-.presentation-slide {
-  position: relative;
-  min-height: 100vh;
-  padding: 6.5rem 3rem 5.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-bottom: 1.5px solid var(--border-subtle);
+.hero-section {
+  padding-top: 10rem;
+  padding-bottom: 5.5rem;
 }
 
-@media (min-width: 1400px) {
-  .presentation-slide {
-    padding: 7rem 5rem 6rem;
-  }
+.hero-tag {
+  margin-bottom: 1.5rem;
 }
 
-.slide-content-wrap {
-  max-width: 1280px;
-  width: 100%;
-  margin: 0 auto;
-}
-
-/* Corner Micro-Labels */
-.slide-corner-tl {
-  position: absolute;
-  top: 4.8rem;
-  left: 3rem;
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
-  color: var(--text-muted);
-}
-
-.slide-corner-tr {
-  position: absolute;
-  top: 4.8rem;
-  right: 3rem;
-  font-size: 0.72rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
-  color: var(--text-muted);
-}
-
-.slide-corner-bl {
-  position: absolute;
-  bottom: 2rem;
-  left: 3rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-primary);
-}
-
-.slide-corner-br {
-  position: absolute;
-  bottom: 1.8rem;
-  right: 3rem;
-}
-
-.pill-arrow-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 72px;
-  height: 32px;
-  border: 1.5px solid var(--border-dark);
-  border-radius: 9999px;
-  color: var(--text-primary);
-  background: transparent;
-  transition: all 0.25s ease;
-}
-
-.pill-arrow-btn svg {
-  transition: transform 0.25s ease;
-}
-
-.pill-arrow-btn:hover {
-  background: var(--text-primary);
-  color: var(--bg-page);
-}
-
-.pill-arrow-btn:hover svg {
-  transform: translateX(4px);
-}
-
-/* ==========================================================================
-   Slide 1: Cover / Hero (Page 1)
-   ========================================================================== */
-
-.hero-cover {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 82vh;
-}
-
-.hero-super-title {
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--text-secondary);
-  margin-bottom: 0.75rem;
-}
-
-.hero-massive-title {
-  font-size: clamp(3.8rem, 11vw, 9.5rem);
+.hero-title {
+  font-size: clamp(2.8rem, 6.5vw, 5.2rem);
   font-weight: 900;
-  line-height: 0.95;
   letter-spacing: -0.04em;
+  line-height: 1.02;
   margin-bottom: 1.5rem;
   color: var(--text-primary);
 }
 
-.hero-sub-text {
-  font-size: clamp(1rem, 2.2vw, 1.45rem);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-primary);
-  margin-bottom: 2rem;
+.hero-title .hero-sub-name {
+  display: block;
+  font-size: 0.42em;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
 }
 
-.hero-btn-row {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.btn-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.65rem 1.6rem;
-  border-radius: 9999px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.btn-pill-primary {
-  background: var(--text-primary);
-  color: var(--bg-page);
-  border: 1.5px solid var(--text-primary);
-}
-
-.btn-pill-primary:hover {
-  background: transparent;
-  color: var(--text-primary);
-  opacity: 1;
-}
-
-.btn-pill-secondary {
-  background: transparent;
-  color: var(--text-primary);
-  border: 1.5px solid var(--border-dark);
-}
-
-.btn-pill-secondary:hover {
-  background: var(--text-primary);
-  color: var(--bg-page);
-  opacity: 1;
-}
-
-/* ==========================================================================
-   Slide 2: Table of Contents (Page 2)
-   ========================================================================== */
-
-.toc-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.25fr;
-  gap: 4rem;
-  align-items: center;
-}
-
-.toc-left {
-  max-width: 480px;
-}
-
-.toc-title {
-  font-size: clamp(2.6rem, 5.5vw, 4.4rem);
-  line-height: 1.05;
-  margin-bottom: 1.25rem;
-}
-
-.toc-desc {
-  font-size: 1.05rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-}
-
-/* Sweeping Arc / Spine Timeline */
-.toc-spine-container {
-  position: relative;
-  padding-left: 2rem;
-}
-
-.toc-spine-line {
-  position: absolute;
-  top: 15px;
-  bottom: 15px;
-  left: 38px;
-  width: 1.5px;
-  background: var(--border-dark);
-}
-
-.toc-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.75rem;
-  position: relative;
-  z-index: 2;
-}
-
-.toc-item {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  text-decoration: none;
-  group: pointer;
-}
-
-.pill-node {
-  width: 44px;
-  height: 22px;
-  border: 1.5px solid var(--border-dark);
-  border-radius: 9999px;
-  background: var(--bg-page);
-  flex-shrink: 0;
-  transition: all 0.25s ease;
-  position: relative;
-  z-index: 3;
-}
-
-.toc-item:hover .pill-node {
-  background: var(--text-primary);
-  transform: scale(1.12);
-}
-
-.toc-item-text {
+.hero-bio {
   font-size: 1.15rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--text-primary);
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.toc-item:hover .toc-item-text {
-  transform: translateX(6px);
-  color: var(--accent-blue);
-}
-
-/* ==========================================================================
-   Slide 3: Introduction & Visual Sandbox (Page 3 & 4)
-   ========================================================================== */
-
-.intro-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3.5rem;
-  align-items: center;
-}
-
-.slide-heading {
-  font-size: clamp(2.4rem, 5vw, 4rem);
-  margin-bottom: 1.25rem;
-}
-
-.intro-body-text {
-  font-size: 1.05rem;
   color: var(--text-secondary);
-  line-height: 1.65;
-  margin-bottom: 1rem;
+  max-width: 820px;
+  line-height: 1.7;
+  margin-bottom: 2.25rem;
 }
 
-.metrics-strip-row {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+.hero-actions {
+  display: flex;
   gap: 1rem;
-  margin-top: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 3.5rem;
 }
 
-.metric-box-card {
-  padding: 1rem 1.25rem;
-  border: 1.5px solid var(--border-subtle);
-  border-radius: 12px;
+/* Hero Metrics Strip */
+.metrics-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  padding-top: 2rem;
+  border-top: 1.5px solid var(--border-subtle);
+}
+
+.metric-card {
   background: var(--bg-surface);
-}
-
-.metric-box-val {
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: var(--text-primary);
-  font-family: 'JetBrains Mono', monospace;
-}
-
-.metric-box-lbl {
-  font-size: 0.78rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--text-muted);
-  margin-top: 0.2rem;
-}
-
-/* Stadium / Capsule Photo Frame (Page 3 Style) */
-.stadium-frame {
   border: 1.5px solid var(--border-dark);
-  border-radius: 40px;
-  background: var(--bg-surface);
-  padding: 1.75rem;
-  box-shadow: var(--shadow-card);
-  overflow: hidden;
+  border-radius: 14px;
+  padding: 1.25rem;
+  box-shadow: var(--shadow-subtle);
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
-.chart-header-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--border-subtle);
+.metric-card:hover {
+  transform: translateY(-2px);
 }
 
-.chart-pill-badge {
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 0.2rem 0.6rem;
-  border-radius: 9999px;
-  border: 1px solid var(--border-dark);
+.metric-number {
+  display: block;
+  font-size: 2rem;
+  font-weight: 900;
   color: var(--text-primary);
-}
-
-.chart-canvas-wrap {
-  position: relative;
-  height: 250px;
-  width: 100%;
-}
-
-.chart-toggles {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  flex-wrap: wrap;
-}
-
-.dataset-toggle-btn {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  padding: 0.35rem 0.85rem;
-  border-radius: 9999px;
-  border: 1.5px solid var(--border-subtle);
-  background: transparent;
-  color: var(--text-primary);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.dataset-toggle-btn:hover {
-  border-color: var(--text-primary);
-}
-
-/* ==========================================================================
-   Slide 4: Education (Page 5)
-   ========================================================================== */
-
-.edu-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.25fr;
-  gap: 4rem;
-  align-items: center;
-}
-
-.wireline-timeline {
-  position: relative;
-  padding-left: 2rem;
-}
-
-.wireline-spine {
-  position: absolute;
-  top: 15px;
-  bottom: 15px;
-  left: 38px;
-  width: 1.5px;
-  background: var(--border-dark);
-}
-
-.wireline-entry {
-  display: flex;
-  align-items: flex-start;
-  gap: 1.75rem;
-  margin-bottom: 2.5rem;
-  position: relative;
-  z-index: 2;
-}
-
-.wireline-entry:last-child {
-  margin-bottom: 0;
-}
-
-.wireline-entry .pill-node {
-  margin-top: 4px;
-}
-
-.wireline-content {
-  flex-grow: 1;
-}
-
-.wireline-title-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: 0.3rem;
-}
-
-.wireline-school {
-  font-size: 1.25rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: var(--text-primary);
-}
-
-.wireline-date {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.wireline-degree {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-  margin-bottom: 0.3rem;
-}
-
-.wireline-details {
-  font-size: 0.92rem;
-  color: var(--text-muted);
-  line-height: 1.55;
-}
-
-/* ==========================================================================
-   Slide 5: Personal & Technical Skills (Page 6)
-   ========================================================================== */
-
-.skills-slide-center {
-  text-align: center;
-}
-
-.skills-slide-center .slide-heading {
-  margin-bottom: 0.75rem;
-}
-
-.skills-subhead {
-  max-width: 650px;
-  margin: 0 auto 3.5rem;
-  font-size: 1.05rem;
-  color: var(--text-secondary);
-}
-
-/* Horizontal Wireline */
-.horizontal-wireline-container {
-  position: relative;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.horizontal-wireline-bar {
-  position: absolute;
-  top: 11px;
-  left: 10%;
-  right: 10%;
-  height: 1.5px;
-  background: var(--border-dark);
-  z-index: 1;
-}
-
-.horizontal-skill-cols {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
-  position: relative;
-  z-index: 2;
-}
-
-.skill-pillar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.skill-pillar .pill-node {
-  margin-bottom: 1.75rem;
-}
-
-.skill-pillar-title {
-  font-size: 1.15rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  margin-bottom: 0.75rem;
-  color: var(--text-primary);
-}
-
-.skill-pillar-text {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-}
-
-/* ==========================================================================
-   Slide 6: Work Experience (Page 7)
-   ========================================================================== */
-
-.experience-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.35fr;
-  gap: 4rem;
-  align-items: center;
-}
-
-.experience-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 1.75rem;
-  margin-bottom: 2.5rem;
-  position: relative;
-  z-index: 2;
-}
-
-.experience-item:last-child {
-  margin-bottom: 0;
-}
-
-.experience-item .pill-node {
-  margin-top: 4px;
-}
-
-.experience-content {
-  flex-grow: 1;
-}
-
-.experience-header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: 0.2rem;
-}
-
-.experience-role {
-  font-size: 1.25rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: var(--text-primary);
-}
-
-.experience-date {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.experience-company {
-  font-size: 0.92rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  margin-bottom: 0.5rem;
-}
-
-.experience-desc {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  line-height: 1.55;
-  margin-bottom: 0.6rem;
-}
-
-.experience-bullets {
-  padding-left: 1.2rem;
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  line-height: 1.55;
-}
-
-.experience-bullets li {
+  line-height: 1.1;
   margin-bottom: 0.35rem;
 }
 
+.metric-label {
+  display: block;
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
 /* ==========================================================================
-   Slide 7: Featured Project Portfolio (Page 8 & 9)
+   Education & Skills Section
    ========================================================================== */
 
-.project-slide-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.project-showcase-grid {
+.edu-skills-grid {
   display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: 3.5rem;
-  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: stretch;
 }
 
-/* Collage of Real Notebook Charts (Page 9 Style) */
-.project-visual-collage {
+.editorial-card {
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-dark);
+  border-radius: 20px;
+  padding: 2.25rem;
+  box-shadow: var(--shadow-card);
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  justify-content: space-between;
 }
 
-.collage-img-card {
-  border: 1.5px solid var(--border-dark);
-  border-radius: 18px;
-  background: var(--bg-surface);
-  padding: 0.75rem;
-  box-shadow: var(--shadow-card);
-  overflow: hidden;
+.editorial-card-heading {
+  font-size: 1.25rem;
+  font-weight: 900;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1.5px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.collage-img-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 12px;
+.edu-institution {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 0.25rem;
 }
 
-.collage-img-caption {
-  font-size: 0.75rem;
-  font-family: 'JetBrains Mono', monospace;
+.edu-degree {
+  font-size: 0.95rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  color: var(--text-muted);
-  margin-top: 0.5rem;
-  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: 0.85rem;
 }
 
-.project-details-card {
+.edu-meta-pill {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.edu-details {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Skills 3-Pillar Wireline Block */
+.skills-pillars-stack {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
 }
 
-.project-tag-pill {
-  display: inline-flex;
-  font-size: 0.72rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 0.25rem 0.75rem;
+.skill-pillar-row {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  position: relative;
+}
+
+.skill-node-pill {
+  width: 32px;
+  height: 18px;
   border-radius: 9999px;
   border: 1.5px solid var(--border-dark);
-  align-self: flex-start;
-  color: var(--text-primary);
+  background: var(--bg-base);
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.skill-pillar-title {
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.35rem;
+}
+
+.skill-pillar-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* ==========================================================================
+   Project Section & Live Model Sandbox
+   ========================================================================== */
+
+.project-feature-card {
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-dark);
+  border-radius: 28px;
+  padding: 3rem;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 2.5rem;
+}
+
+.project-header-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .project-main-title {
-  font-size: clamp(2rem, 3.8vw, 3.2rem);
-  line-height: 1.05;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+  line-height: 1.15;
 }
 
 .project-main-desc {
   font-size: 1.05rem;
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.7;
+  max-width: 950px;
+  margin-bottom: 2rem;
 }
 
-.project-metrics-quad {
+/* Project Metrics Row */
+.project-metrics-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.75rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2.5rem;
 }
 
-.project-metric-pill-card {
-  padding: 0.75rem 1rem;
-  border: 1.5px solid var(--border-subtle);
-  border-radius: 10px;
-  background: var(--bg-surface);
+.project-metric-pill-box {
+  background: var(--bg-base);
+  border: 1.5px solid var(--border-dark);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  text-align: center;
 }
 
-.project-metric-val {
+.project-metric-number {
+  font-size: 1.6rem;
+  font-weight: 900;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 1.35rem;
-  font-weight: 800;
   color: var(--text-primary);
+  line-height: 1.1;
+  margin-bottom: 0.25rem;
 }
 
 .project-metric-name {
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
-  color: var(--text-muted);
   letter-spacing: 0.04em;
+  color: var(--text-muted);
 }
 
-.project-action-buttons {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  margin-top: 0.5rem;
-}
-
-/* ==========================================================================
-   Slide 8: Resume & Curriculum Vitae Access
-   ========================================================================== */
-
-.resume-access-slide {
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.resume-card-box {
-  margin-top: 2rem;
-  padding: 2.5rem;
+/* The Live Model Sandbox (Embedded in Project Deep Dive Section) */
+.live-model-sandbox-frame {
   border: 1.5px solid var(--border-dark);
   border-radius: 24px;
-  background: var(--bg-surface);
-  box-shadow: var(--shadow-card);
+  background: var(--bg-surface-elevated);
+  padding: 2rem;
+  margin-bottom: 2.5rem;
 }
 
-.resume-card-filename {
-  font-size: 1.4rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  margin-bottom: 0.35rem;
-}
-
-.resume-card-sub {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  margin-bottom: 1.75rem;
-}
-
-.resume-btns-flex {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.resume-note-micro {
-  margin-top: 1.5rem;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
-/* ==========================================================================
-   Slide 9: Thank You / Outro & Contact (Page 11)
-   ========================================================================== */
-
-.outro-header-block {
-  text-align: center;
-  margin-bottom: 3.5rem;
-}
-
-.outro-super-title {
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--text-secondary);
-  margin-bottom: 0.5rem;
-}
-
-.outro-massive-title {
-  font-size: clamp(3.5rem, 9.5vw, 8rem);
-  font-weight: 900;
-  line-height: 0.95;
-  letter-spacing: -0.04em;
-  color: var(--text-primary);
-  margin-bottom: 1rem;
-}
-
-.outro-sub-title {
-  font-size: 1.15rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-primary);
-}
-
-.contact-split-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.25fr;
-  gap: 4rem;
-  align-items: flex-start;
-}
-
-.contact-details-col {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.contact-row-card {
+.sandbox-header-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.2rem 1.4rem;
-  border: 1.5px solid var(--border-dark);
-  border-radius: 14px;
-  background: var(--bg-surface);
-  text-decoration: none;
-  color: var(--text-primary);
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1.5px solid var(--border-subtle);
+  margin-bottom: 1.5rem;
 }
 
-.copy-mini-btn {
-  font-size: 0.72rem;
+.sandbox-title-block h3 {
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+
+.sandbox-subhead {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+  margin-top: 0.2rem;
+}
+
+.sandbox-toggles {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.dataset-toggle-btn {
+  padding: 0.4rem 0.95rem;
+  border-radius: 9999px;
+  border: 1.5px solid var(--border-subtle);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 0.35rem 0.75rem;
-  border: 1.5px solid var(--border-dark);
-  border-radius: 9999px;
-  background: transparent;
-  color: var(--text-primary);
+  letter-spacing: 0.04em;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.copy-mini-btn:hover {
-  background: var(--text-primary);
-  color: var(--bg-page);
+.dataset-toggle-btn:hover {
+  border-color: var(--border-dark);
 }
 
-.contact-form-col {
-  padding: 2rem;
+.chart-canvas-container {
+  position: relative;
+  height: 320px;
+  width: 100%;
+}
+
+.sandbox-footer-notes {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-muted);
+}
+
+/* Notebook Chart Figures (Side by Side) */
+.project-notebook-figures-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.notebook-figure-card {
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-dark);
+  border-radius: 16px;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.notebook-figure-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+.notebook-figure-caption {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+  margin-top: 0.75rem;
+  text-align: center;
+  line-height: 1.45;
+}
+
+/* Project CTAs */
+.project-action-bar {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ==========================================
+   Resume & Experience Section
+   ========================================== */
+
+.resume-access-card {
+  background: var(--bg-surface);
   border: 1.5px solid var(--border-dark);
   border-radius: 20px;
+  padding: 2.25rem;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.resume-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.resume-file-info {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.resume-icon-capsule {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border-dark);
+  background: var(--bg-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  flex-shrink: 0;
+}
+
+.resume-file-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.resume-file-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.resume-btn-group {
+  display: flex;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.resume-notice-box {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-subtle);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Experience Wireline Timeline */
+.timeline-wire-container {
+  position: relative;
+  padding-left: 2.5rem;
+}
+
+.timeline-wire-spine {
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  left: 17px;
+  width: 2px;
+  background: var(--border-dark);
+}
+
+.timeline-entry {
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+.timeline-entry:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-pill-node {
+  position: absolute;
+  left: -2.5rem;
+  top: 6px;
+  width: 36px;
+  height: 20px;
+  border-radius: 9999px;
+  border: 2px solid var(--border-dark);
+  background: var(--bg-base);
+  z-index: 2;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.timeline-entry:hover .timeline-pill-node {
+  background: var(--text-primary);
+  transform: scale(1.15);
+}
+
+.timeline-card {
   background: var(--bg-surface);
+  border: 1.5px solid var(--border-dark);
+  border-radius: 18px;
+  padding: 2rem;
+  box-shadow: var(--shadow-subtle);
+}
+
+.timeline-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.timeline-role {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--text-primary);
+}
+
+.timeline-date {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.timeline-company {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.timeline-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+
+.timeline-bullets {
+  padding-left: 1.25rem;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.timeline-bullets li {
+  margin-bottom: 0.5rem;
+}
+
+/* ==========================================================================
+   Contact Section
+   ========================================================================== */
+
+.contact-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 3.5rem;
+  align-items: flex-start;
+}
+
+.contact-info-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-item-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border: 1.5px solid var(--border-dark);
+  border-radius: 16px;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.contact-icon-box {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border-dark);
+  background: var(--bg-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+}
+
+.contact-form-box {
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-dark);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-card);
 }
 
 .form-group {
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .form-label {
@@ -1073,16 +942,16 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--text-primary);
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.45rem;
 }
 
 .form-input,
 .form-textarea {
   width: 100%;
-  padding: 0.75rem 1rem;
+  padding: 0.85rem 1.15rem;
   border: 1.5px solid var(--border-subtle);
-  border-radius: 8px;
-  background: var(--bg-page);
+  border-radius: 10px;
+  background: var(--bg-base);
   color: var(--text-primary);
   font-family: inherit;
   font-size: 0.92rem;
@@ -1097,7 +966,39 @@ h1, h2, h3, h4, h5, h6 {
 
 .form-textarea {
   resize: vertical;
-  min-height: 100px;
+  min-height: 110px;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.site-footer {
+  border-top: 1.5px solid var(--border-subtle);
+  padding: 3rem 0;
+  margin-top: 4rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-link {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
 }
 
 /* ==========================================================================
@@ -1108,12 +1009,12 @@ dialog.project-modal {
   margin: auto;
   padding: 0;
   border: 2px solid var(--border-dark);
-  border-radius: 20px;
-  background: var(--bg-slide);
+  border-radius: 24px;
+  background: var(--bg-surface-elevated);
   color: var(--text-primary);
-  max-width: 920px;
+  max-width: 940px;
   width: 92%;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
 }
 
 dialog.project-modal::backdrop {
@@ -1123,7 +1024,7 @@ dialog.project-modal::backdrop {
 }
 
 .modal-header {
-  padding: 1.5rem 2rem;
+  padding: 1.75rem 2.25rem;
   border-bottom: 1.5px solid var(--border-subtle);
   display: flex;
   align-items: center;
@@ -1132,15 +1033,15 @@ dialog.project-modal::backdrop {
 
 .modal-title {
   font-size: 1.4rem;
-  font-weight: 800;
+  font-weight: 900;
 }
 
 .modal-close-btn {
   background: transparent;
   border: 1.5px solid var(--border-dark);
   border-radius: 9999px;
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -1151,11 +1052,11 @@ dialog.project-modal::backdrop {
 
 .modal-close-btn:hover {
   background: var(--text-primary);
-  color: var(--bg-page);
+  color: var(--bg-base);
 }
 
 .modal-body {
-  padding: 2rem;
+  padding: 2.25rem;
   max-height: 72vh;
   overflow-y: auto;
 }
@@ -1164,20 +1065,20 @@ dialog.project-modal::backdrop {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   gap: 1rem;
-  margin-bottom: 1.75rem;
+  margin-bottom: 2rem;
 }
 
 .modal-stat-box {
   background: var(--bg-surface);
   border: 1.5px solid var(--border-subtle);
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 1rem;
   text-align: center;
 }
 
 .modal-stat-box-val {
-  font-size: 1.4rem;
-  font-weight: 800;
+  font-size: 1.45rem;
+  font-weight: 900;
   font-family: 'JetBrains Mono', monospace;
   color: var(--text-primary);
 }
@@ -1190,24 +1091,24 @@ dialog.project-modal::backdrop {
 }
 
 .modal-section-heading {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 800;
-  margin: 1.5rem 0 0.6rem;
+  margin: 1.75rem 0 0.65rem;
   color: var(--text-primary);
 }
 
 .modal-text {
   font-size: 0.95rem;
   color: var(--text-secondary);
-  line-height: 1.65;
+  line-height: 1.7;
 }
 
 .modal-figure {
-  margin: 1.25rem 0 1.5rem;
+  margin: 1.5rem 0;
   background: var(--bg-surface);
   border: 1.5px solid var(--border-dark);
-  border-radius: 14px;
-  padding: 0.85rem;
+  border-radius: 16px;
+  padding: 1rem;
 }
 
 .modal-figure img {
@@ -1220,7 +1121,7 @@ dialog.project-modal::backdrop {
 .modal-figure-caption {
   font-size: 0.78rem;
   color: var(--text-muted);
-  margin-top: 0.6rem;
+  margin-top: 0.65rem;
   text-align: center;
   font-family: 'JetBrains Mono', monospace;
   line-height: 1.45;
@@ -1231,9 +1132,9 @@ dialog.project-modal::backdrop {
   align-items: center;
   justify-content: space-between;
   margin-top: 1.25rem;
-  padding: 0.4rem 0.85rem;
+  padding: 0.45rem 1rem;
   background: var(--text-primary);
-  color: var(--bg-page);
+  color: var(--bg-base);
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
@@ -1252,7 +1153,7 @@ dialog.project-modal::backdrop {
   border-radius: 8px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  padding: 1.1rem;
+  padding: 1.25rem;
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.82rem;
   overflow-x: auto;
@@ -1261,8 +1162,8 @@ dialog.project-modal::backdrop {
 
 .modal-table-container {
   overflow-x: auto;
-  margin: 1.25rem 0;
-  border-radius: 10px;
+  margin: 1.5rem 0;
+  border-radius: 12px;
   border: 1.5px solid var(--border-dark);
   background: var(--bg-surface);
 }
@@ -1276,15 +1177,15 @@ dialog.project-modal::backdrop {
 
 .modal-table th {
   background: var(--bg-subtle);
-  padding: 0.75rem 1rem;
-  font-weight: 700;
+  padding: 0.85rem 1rem;
+  font-weight: 800;
   text-transform: uppercase;
   border-bottom: 1.5px solid var(--border-dark);
   color: var(--text-primary);
 }
 
 .modal-table td {
-  padding: 0.75rem 1rem;
+  padding: 0.85rem 1rem;
   border-bottom: 1px solid var(--border-subtle);
   color: var(--text-secondary);
 }
@@ -1298,28 +1199,28 @@ dialog.project-modal::backdrop {
   align-items: center;
   gap: 0.5rem;
   margin: 0.5rem 0 1rem;
-  padding: 0.35rem 0.85rem;
+  padding: 0.4rem 0.95rem;
   border: 1.5px solid var(--border-dark);
   border-radius: 9999px;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 600;
   background: var(--bg-surface);
 }
 
 .modal-list {
   padding-left: 1.35rem;
-  margin: 0.6rem 0 1.1rem;
+  margin: 0.75rem 0 1.25rem;
   color: var(--text-secondary);
   font-size: 0.95rem;
   line-height: 1.65;
 }
 
 .modal-list li {
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.5rem;
 }
 
 .modal-footer {
-  padding: 1.25rem 2rem;
+  padding: 1.5rem 2.25rem;
   border-top: 1.5px solid var(--border-subtle);
   display: flex;
   align-items: center;
@@ -1337,8 +1238,8 @@ dialog.project-modal::backdrop {
   right: 2.5rem;
   z-index: 9999;
   background: var(--text-primary);
-  color: var(--bg-page);
-  padding: 0.75rem 1.4rem;
+  color: var(--bg-base);
+  padding: 0.85rem 1.5rem;
   border-radius: 9999px;
   font-size: 0.82rem;
   font-weight: 700;
@@ -1346,9 +1247,12 @@ dialog.project-modal::backdrop {
   letter-spacing: 0.04em;
   opacity: 0;
   pointer-events: none;
-  transform: translateY(10px);
+  transform: translateY(12px);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 }
 
 .toast.show {
@@ -1362,51 +1266,75 @@ dialog.project-modal::backdrop {
    ========================================================================== */
 
 @media (max-width: 992px) {
-  .presentation-slide {
-    padding: 5.5rem 2rem 5rem;
-    min-height: auto;
+  .section {
+    padding: 4.5rem 0;
   }
-  .slide-corner-tl { top: 3.5rem; left: 2rem; }
-  .slide-corner-tr { top: 3.5rem; right: 2rem; }
-  .slide-corner-bl { bottom: 1.5rem; left: 2rem; }
-  .slide-corner-br { bottom: 1.5rem; right: 2rem; }
+  
+  .hero-section {
+    padding-top: 8rem;
+  }
 
-  .toc-grid,
-  .intro-grid,
-  .edu-grid,
-  .experience-grid,
-  .project-showcase-grid,
+  .metrics-strip,
+  .project-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .edu-skills-grid,
+  .project-notebook-figures-grid,
   .contact-split-grid {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-
-  .horizontal-wireline-bar {
-    display: none;
-  }
-  .horizontal-skill-cols {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 
   .mobile-toggle {
-    display: flex;
+    display: inline-flex;
   }
 
   .nav-menu {
     display: none;
     position: absolute;
-    top: 100%;
+    top: 72px;
     left: 0;
     right: 0;
-    background: var(--bg-page);
-    border-bottom: 1px solid var(--border-dark);
+    background: var(--bg-base);
+    border-bottom: 1.5px solid var(--border-dark);
     flex-direction: column;
     padding: 1.5rem 2rem;
-    gap: 1rem;
+    gap: 1.25rem;
+    box-shadow: var(--shadow-card);
   }
 
   .nav-menu.mobile-open {
     display: flex;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  .project-feature-card,
+  .live-model-sandbox-frame,
+  .resume-access-card,
+  .contact-form-box,
+  .editorial-card {
+    padding: 1.5rem;
+    border-radius: 18px;
+  }
+
+  .metrics-strip,
+  .project-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-wire-container {
+    padding-left: 2rem;
+  }
+
+  .timeline-pill-node {
+    left: -2rem;
+    width: 28px;
+    height: 16px;
   }
 }

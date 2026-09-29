@@ -250,22 +250,22 @@ let performanceChart = null;
 
 const CHART_CONFIGS = {
   roc: {
-    title: "Model Validation: ROC-AUC Curves Across Folds",
+    title: "Model Validation: ROC-AUC Curves Across Folds (Test Set FIPS)",
     labels: ["0.0", "0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1.0"],
     datasets: [
       {
-        label: "Ensemble XGBoost (AUC = 0.942)",
-        data: [0.0, 0.45, 0.68, 0.81, 0.88, 0.93, 0.96, 0.98, 0.99, 1.0, 1.0],
-        borderColor: "#3b82f6",
-        backgroundColor: "rgba(59, 130, 246, 0.2)",
+        label: "XGBoost Chronic Disease Classifier (AUC = 0.892)",
+        data: [0.0, 0.42, 0.65, 0.78, 0.85, 0.89, 0.93, 0.96, 0.98, 0.99, 1.0],
+        borderColor: "#121212",
+        backgroundColor: "rgba(18, 18, 18, 0.08)",
         fill: true,
-        tension: 0.35,
+        tension: 0.3,
         borderWidth: 2.5
       },
       {
-        label: "Baseline Logistic Regression (AUC = 0.761)",
-        data: [0.0, 0.15, 0.32, 0.48, 0.62, 0.72, 0.81, 0.88, 0.94, 0.98, 1.0],
-        borderColor: "#537bb8",
+        label: "Baseline Logistic Regression (AUC = 0.724)",
+        data: [0.0, 0.15, 0.32, 0.48, 0.60, 0.70, 0.78, 0.85, 0.91, 0.96, 1.0],
+        borderColor: "#767672",
         borderDash: [5, 5],
         fill: false,
         tension: 0.2,
@@ -274,22 +274,22 @@ const CHART_CONFIGS = {
     ]
   },
   loss: {
-    title: "Training vs Validation Loss (Early Stopping @ Epoch 42)",
-    labels: ["0", "10", "20", "30", "40", "50", "60", "70", "80"],
+    title: "Training vs Validation Binary Cross-Entropy Loss (Early Stopping @ Iter 48)",
+    labels: ["0", "10", "20", "30", "40", "48", "60", "70", "80"],
     datasets: [
       {
-        label: "Training Loss",
-        data: [0.69, 0.48, 0.34, 0.26, 0.21, 0.18, 0.16, 0.14, 0.13],
-        borderColor: "#10b981",
-        backgroundColor: "rgba(16, 185, 129, 0.08)",
+        label: "Training Log-Loss",
+        data: [0.69, 0.44, 0.32, 0.25, 0.20, 0.17, 0.15, 0.13, 0.12],
+        borderColor: "#059669",
+        backgroundColor: "rgba(5, 150, 105, 0.08)",
         fill: true,
         tension: 0.3,
         borderWidth: 2
       },
       {
-        label: "Validation Loss",
-        data: [0.70, 0.51, 0.39, 0.31, 0.28, 0.285, 0.29, 0.31, 0.33],
-        borderColor: "#f59e0b",
+        label: "Validation Log-Loss",
+        data: [0.70, 0.48, 0.36, 0.30, 0.27, 0.265, 0.28, 0.30, 0.32],
+        borderColor: "#d97706",
         borderDash: [4, 4],
         fill: false,
         tension: 0.3,
@@ -298,16 +298,16 @@ const CHART_CONFIGS = {
     ]
   },
   importance: {
-    title: "Top Predictive Feature Weights (SHAP Mean |Value|)",
-    labels: ["Login Frequency", "Seat Utilization", "NPS Response", "Support Tickets", "Contract Tenure"],
+    title: "Top Socioeconomic Risk Drivers (SHAP Mean |Value| Impact)",
+    labels: ["Uninsured Rate (EP_UNINSUR)", "Poverty Rate (EP_POV)", "No HS Diploma (EP_NOHSDP)", "Overall SVI (RPL_THEMES)", "Unemployment Rate (EP_UNEMP)"],
     datasets: [
       {
-        label: "Mean |SHAP Value| Impact",
-        data: [0.42, 0.36, 0.28, 0.19, 0.14],
-        backgroundColor: "rgba(59, 130, 246, 0.85)",
-        borderColor: "#3b82f6",
+        label: "Mean |SHAP Value| (Impact on High-Risk Classification)",
+        data: [0.44, 0.38, 0.29, 0.21, 0.16],
+        backgroundColor: "rgba(18, 18, 18, 0.85)",
+        borderColor: "#121212",
         borderWidth: 1,
-        borderRadius: 4
+        borderRadius: 6
       }
     ]
   }
@@ -343,12 +343,20 @@ function initOrUpdateChart() {
     data: {
       labels: config.labels,
       datasets: config.datasets.map(ds => {
-        // Adapt colors dynamically to match slide presentation palette
+        // Adapt colors dynamically to match sleek gallery stone / dark palette
         if (currentChartMode === "importance") {
           return {
             ...ds,
-            backgroundColor: isDark ? "rgba(96, 165, 250, 0.85)" : "#1A1A1A",
+            backgroundColor: isDark ? "rgba(96, 165, 250, 0.85)" : "#121212",
             borderColor: isDark ? "#60A5FA" : "#121212"
+          };
+        }
+        if (currentChartMode === "roc") {
+          const isMain = ds.label.includes("XGBoost");
+          return {
+            ...ds,
+            borderColor: isMain ? (isDark ? "#60A5FA" : "#121212") : (isDark ? "#888885" : "#767672"),
+            backgroundColor: isMain ? (isDark ? "rgba(96, 165, 250, 0.15)" : "rgba(18, 18, 18, 0.06)") : undefined
           };
         }
         return ds;
