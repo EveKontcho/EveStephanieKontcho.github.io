@@ -552,6 +552,11 @@ h1, h2, h3, h4 {
   gap: 1.75rem;
 }
 
+.projects-grid:has(.project-card:only-child) {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
 .project-card {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
