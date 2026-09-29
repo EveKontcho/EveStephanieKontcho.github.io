@@ -1,285 +1,413 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Data Scientist & Analytics Portfolio. Showcasing machine learning models, statistical inference, deep learning architectures, and modern BI data pipelines.">
-  <meta name="author" content="Data Science & Analytics Specialist">
+  <meta name="description" content="Eve Kontcho | Data Science & Analytics Portfolio. Epidemiological modeling, chronic disease risk forecasting with XGBoost, and biomedical oncology analytics.">
+  <meta name="author" content="Eve Kontcho">
   <title>Eve Kontcho | Data Science & Analytics Portfolio</title>
 
   <!-- Typography: Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Core Stylesheet -->
-  <link rel="stylesheet" href="style.css">
+  <!-- Core Presentation Stylesheet -->
+  <link rel="stylesheet" href="style.css?v=3.0">
 
   <!-- Chart.js for Interactive Data Science Visualizations -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
 </head>
 <body>
 
-  <div class="content-wrapper">
+  <!-- Top Floating Header Bar -->
+  <header class="nav-header">
+    <div class="nav-container">
+      <a href="#hero" class="brand-link" aria-label="Home">
+        <div class="brand-avatar">EK</div>
+        <span>Eve Kontcho</span>
+      </a>
 
-    <!-- Top Navigation Header -->
-    <header class="nav-header">
-      <div class="container nav-container">
-        <a href="#hero" class="brand-link" aria-label="Home">
-          <div class="brand-avatar">EK</div>
-          <span>Eve Kontcho<span style="color: var(--accent-primary);">.data</span></span>
+      <!-- Desktop Slide Navigation -->
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#hero" class="nav-link active">Cover</a></li>
+          <li><a href="#toc" class="nav-link">Contents</a></li>
+          <li><a href="#intro" class="nav-link">Intro</a></li>
+          <li><a href="#education" class="nav-link">Education</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#experience" class="nav-link">Experience</a></li>
+          <li><a href="#project" class="nav-link">Project</a></li>
+          <li><a href="#resume" class="nav-link">Resume</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Actions -->
+      <div class="nav-actions">
+        <button id="themeToggleBtn" class="btn-icon" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <span id="themeIcon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="m4.93 4.93 1.41 1.41"></path>
+              <path d="m17.66 17.66 1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="m6.34 17.66-1.41 1.41"></path>
+              <path d="m19.07 4.93-1.41 1.41"></path>
+            </svg>
+          </span>
+        </button>
+
+        <a href="#contact" class="btn-pill btn-pill-primary" style="padding: 0.45rem 1.15rem; font-size: 0.78rem;">
+          <span>Get in Touch</span>
         </a>
 
-        <!-- Desktop Menu -->
-        <nav>
-          <ul class="nav-menu" id="navMenu">
-            <li><a href="#hero" class="nav-link active">About</a></li>
-            <li><a href="#projects" class="nav-link">Projects</a></li>
-            <li><a href="#resume" class="nav-link">Resume</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
-          </ul>
-        </nav>
+        <!-- Mobile Nav Toggle -->
+        <button id="mobileToggleBtn" class="btn-icon mobile-toggle" aria-label="Open Mobile Menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" x2="20" y1="12" y2="12"></line>
+            <line x1="4" x2="20" y1="6" y2="6"></line>
+            <line x1="4" x2="20" y1="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
 
-        <!-- Actions -->
-        <div class="nav-actions">
-          <button id="themeToggleBtn" class="btn-icon" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
-            <span id="themeIcon">
-              <!-- Sun / Moon Icon injected by script.js -->
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="4"></circle>
-                <path d="M12 2v2"></path>
-                <path d="M12 20v2"></path>
-                <path d="m4.93 4.93 1.41 1.41"></path>
-                <path d="m17.66 17.66 1.41 1.41"></path>
-                <path d="M2 12h2"></path>
-                <path d="M20 12h2"></path>
-                <path d="m6.34 17.66-1.41 1.41"></path>
-                <path d="m19.07 4.93-1.41 1.41"></path>
+  <main>
+
+    <!-- ==========================================
+         SLIDE 1: COVER / HERO (Page 1)
+         ========================================== -->
+    <section id="hero" class="presentation-slide">
+      <span class="slide-corner-tl">DATA SCIENCE &amp; ANALYTICS</span>
+      <span class="slide-corner-tr">OGDEN HONORS COLLEGE · LSU</span>
+
+      <div class="slide-content-wrap">
+        <div class="hero-cover">
+          <p class="hero-super-title">EPIDEMIOLOGICAL MODELING &amp; ML</p>
+          <h1 class="hero-massive-title">PORTFOLIO</h1>
+          <p class="hero-sub-text">PRESENTATION BY EVE KONTCHO</p>
+
+          <div class="hero-btn-row">
+            <a href="#project" class="btn-pill btn-pill-primary">
+              <span>Explore Featured Project</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
               </svg>
-            </span>
-          </button>
-
-          <a href="#contact" class="btn btn-secondary" style="font-size: 0.85rem; padding: 0.45rem 0.9rem;">
-            <span>Get in Touch</span>
-          </a>
-
-          <!-- Mobile Nav Hamburger -->
-          <button id="mobileToggleBtn" class="btn-icon mobile-toggle" aria-label="Open Mobile Menu">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="4" x2="20" y1="12" y2="12"></line>
-              <line x1="4" x2="20" y1="6" y2="6"></line>
-              <line x1="4" x2="20" y1="18" y2="18"></line>
-            </svg>
-          </button>
+            </a>
+            <a href="resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill-secondary">
+              <span>View Resume (PDF)</span>
+            </a>
+          </div>
         </div>
       </div>
-    </header>
 
-    <!-- Main Content Area -->
-    <main>
+      <span class="slide-corner-bl">STEPHSKO11@GMAIL.COM</span>
+      <div class="slide-corner-br">
+        <a href="#toc" class="pill-arrow-btn" aria-label="Go to Table of Contents">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </section>
 
-      <!-- Hero Section -->
-      <section id="hero" class="hero-section">
-        <div class="container">
-          <div class="hero-grid">
-            
-            <!-- Hero Left: Pitch & Bio -->
-            <div class="hero-content">
-              <div class="hero-tag">
-                <span class="badge">
-                  <span class="badge-pulse"></span>
-                  <span>Available for Data Science & Analytics Roles</span>
-                </span>
-              </div>
+    <!-- ==========================================
+         SLIDE 2: TABLE OF CONTENTS (Page 2)
+         ========================================== -->
+    <section id="toc" class="presentation-slide">
+      <span class="slide-corner-tl">AGENDA &amp; STRUCTURE</span>
+      <span class="slide-corner-tr">PORTFOLIO OVERVIEW</span>
 
-              <h1 class="hero-title">
-                Turning Complex Data into <span class="hero-gradient-text">Predictive Intelligence</span>.
-              </h1>
-
-              <p class="hero-bio">
-                Hi, I'm <strong>Eve Kontcho</strong>. I specialize in health data analytics, predictive modeling, and epidemiological systems. I bridge the gap between complex clinical data and actionable public health outcomes, leveraging rigorous statistical models to drive evidence-based healthcare decisions.
-              </p>
-
-              <div class="hero-actions">
-                <a href="#projects" class="btn btn-primary">
-                  <span>Explore Projects</span>
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M5 12h14"></path>
-                    <path d="m12 5 7 7-7 7"></path>
-                  </svg>
-                </a>
-                <a href="#resume" class="btn btn-secondary" id="heroResumeBtn" title="View & Download Resume">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                    <polyline points="7 10 12 15 17 10"></polyline>
-                    <line x1="12" x2="12" y1="15" y2="3"></line>
-                  </svg>
-                  <span>Resume / CV</span>
-                </a>
-              </div>
-
-              <!-- Metric Stats Strip -->
-              <div class="metrics-strip">
-                <div class="metric-card">
-                  <span class="metric-number">94.2%</span>
-                  <span class="metric-label">Peak Model ROC-AUC</span>
-                </div>
-                <div class="metric-card">
-                  <span class="metric-number">45+</span>
-                  <span class="metric-label">Pipelines Deployed</span>
-                </div>
-                <div class="metric-card">
-                  <span class="metric-number">15M+</span>
-                  <span class="metric-label">Daily Events Modeled</span>
-                </div>
-                <div class="metric-card">
-                  <span class="metric-number">4.2x</span>
-                  <span class="metric-label">Query Speedup (dbt)</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Hero Right: Interactive Data Science Sandbox -->
-            <div class="hero-visual">
-              <div class="hero-chart-card">
-                <div class="card-header-bar">
-                  <div class="chart-title-area">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-primary)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="18" y1="20" x2="18" y2="10"></line>
-                      <line x1="12" y1="20" x2="12" y2="4"></line>
-                      <line x1="6" y1="20" x2="6" y2="14"></line>
-                    </svg>
-                    <span class="chart-title" id="chartDynamicTitle">Model Performance Validation</span>
-                  </div>
-                  <span class="chart-badge">LIVE METRICS</span>
-                </div>
-
-                <!-- Canvas -->
-                <div class="chart-canvas-container">
-                  <canvas id="heroChartCanvas"></canvas>
-                </div>
-
-                <!-- Switcher Controls -->
-                <div style="display: flex; gap: 0.4rem; margin-top: 1rem; flex-wrap: wrap;">
-                  <button class="dataset-toggle-btn" data-mode="roc" style="border-color: var(--accent-primary);">ROC Curves</button>
-                  <button class="dataset-toggle-btn" data-mode="loss">Loss Convergence</button>
-                  <button class="dataset-toggle-btn" data-mode="importance">SHAP Weights</button>
-                </div>
-
-                <div class="chart-footer-stats">
-                  <span class="mono-font">Cross-Val: 5-Fold Stratified</span>
-                  <span class="mono-font" style="color: var(--accent-emerald);">● All 142 Tests Passing</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- Projects Showcase Section -->
-      <section id="projects" class="section">
-        <div class="container">
-          <div class="section-header">
-            <p class="section-label">Featured Work</p>
-            <h2 class="section-title">Epidemiological Machine Learning</h2>
-            <p class="section-subtitle">
-              End-to-end chronic disease risk forecasting and proactive public health resource allocation pipeline.
+      <div class="slide-content-wrap">
+        <div class="toc-grid">
+          <div class="toc-left">
+            <h2 class="toc-title">TABLE OF CONTENTS</h2>
+            <p class="toc-desc">
+              Translating complex demographic metrics, clinical trials, and epidemiological data into predictive insights and targeted public health interventions.
             </p>
           </div>
 
-          <!-- Projects Grid Container -->
-          <div class="projects-grid" id="projectsContainer">
-            <!-- Dynamically populated by script.js with rich cards -->
+          <div class="toc-spine-container">
+            <div class="toc-spine-line"></div>
+            <div class="toc-list">
+              <a href="#intro" class="toc-item">
+                <span class="pill-node"></span>
+                <span class="toc-item-text">01. INTRODUCTION</span>
+              </a>
+              <a href="#education" class="toc-item">
+                <span class="pill-node"></span>
+                <span class="toc-item-text">02. EDUCATION</span>
+              </a>
+              <a href="#skills" class="toc-item">
+                <span class="pill-node"></span>
+                <span class="toc-item-text">03. PERSONAL &amp; TECHNICAL SKILLS</span>
+              </a>
+              <a href="#experience" class="toc-item">
+                <span class="pill-node"></span>
+                <span class="toc-item-text">04. WORK EXPERIENCE</span>
+              </a>
+              <a href="#project" class="toc-item">
+                <span class="pill-node"></span>
+                <span class="toc-item-text">05. PROJECT PORTFOLIO</span>
+              </a>
+              <a href="#resume" class="toc-item">
+                <span class="pill-node"></span>
+                <span class="toc-item-text">06. CURRICULUM VITAE</span>
+              </a>
+              <a href="#contact" class="toc-item">
+                <span class="pill-node"></span>
+                <span class="toc-item-text">07. THANK YOU &amp; CONTACT</span>
+              </a>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
 
+      <span class="slide-corner-bl">STEPHSKO11@GMAIL.COM</span>
+      <div class="slide-corner-br">
+        <a href="#intro" class="pill-arrow-btn" aria-label="Go to Introduction">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </section>
 
-      <!-- Resume & Career Milestones Section -->
-      <section id="resume" class="section">
-        <div class="container">
-          <div class="section-header">
-            <p class="section-label">Curriculum Vitae</p>
-            <h2 class="section-title">Resume & Experience</h2>
-            <p class="section-subtitle">
-              Review my biomedical research and data analytics positions below, or access the complete resume PDF.
+    <!-- ==========================================
+         SLIDE 3: INTRODUCTION & PROFILE (Pages 3 & 4)
+         ========================================== -->
+    <section id="intro" class="presentation-slide">
+      <span class="slide-corner-tl">RESEARCH PROFILE</span>
+      <span class="slide-corner-tr">OGDEN HONORS COLLEGE</span>
+
+      <div class="slide-content-wrap">
+        <div class="intro-grid">
+          <div>
+            <h2 class="slide-heading">INTRODUCTION</h2>
+            <p class="intro-body-text">
+              Hi, I'm <strong>Eve Kontcho</strong>. I specialize in health data analytics, predictive modeling, and epidemiological systems. I bridge the gap between complex clinical data and actionable public health outcomes, leveraging rigorous statistical models to drive evidence-based healthcare decisions.
             </p>
+            <p class="intro-body-text">
+              Currently pursuing Information Systems &amp; Analytics at LSU Ogden Honors College, conducting computational oncology research at the LSU School of Veterinary Medicine, and engineering predictive disease classifiers using CDC health telemetry.
+            </p>
+
+            <div class="metrics-strip-row">
+              <div class="metric-box-card">
+                <div class="metric-box-val">94.2%</div>
+                <div class="metric-box-lbl">Peak Model ROC-AUC</div>
+              </div>
+              <div class="metric-box-card">
+                <div class="metric-box-val">45+</div>
+                <div class="metric-box-lbl">Pipelines Deployed</div>
+              </div>
+              <div class="metric-box-card">
+                <div class="metric-box-val">15M+</div>
+                <div class="metric-box-lbl">Daily Events Modeled</div>
+              </div>
+              <div class="metric-box-card">
+                <div class="metric-box-val">4.2x</div>
+                <div class="metric-box-lbl">Query Speedup (dbt)</div>
+              </div>
+            </div>
           </div>
 
-          <!-- Prominent Resume Access & Download Card -->
-          <div class="resume-access-card">
-            <div class="resume-info-block">
-              <div class="resume-file-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <polyline points="14 2 14 8 20 8"></polyline>
-                  <line x1="16" y1="13" x2="8" y2="13"></line>
-                  <line x1="16" y1="17" x2="8" y2="17"></line>
-                  <polyline points="10 9 9 9 8 9"></polyline>
-                </svg>
-              </div>
+          <!-- Stadium / Capsule Frame (Page 3 Style) -->
+          <div class="stadium-frame">
+            <div class="chart-header-row">
               <div>
-                <h3 class="resume-file-title" id="resumeFilenameLabel">Eve_Stephanie_Kontcho_Resume.pdf</h3>
-                <p class="resume-file-subtitle">Biomedical Research & Healthcare Data Analytics (PDF)</p>
+                <h4 style="font-size: 0.95rem; font-weight: 800; text-transform: uppercase;">MODEL VALIDATION SANDBOX</h4>
+                <span id="chartDynamicTitle" style="font-size: 0.78rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">Interactive Performance Curves</span>
               </div>
+              <span class="chart-pill-badge">LIVE METRICS</span>
             </div>
 
-            <div class="resume-btn-group">
-              <!-- Open in browser -->
-              <a href="resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" id="viewResumeBtn" title="View PDF in browser tab">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                  <circle cx="12" cy="12" r="3"></circle>
-                </svg>
-                <span>View Resume</span>
-              </a>
-
-              <!-- Download -->
-              <a href="resume.pdf" download="Eve_Kontcho_Resume.pdf" class="btn btn-primary" id="downloadResumeBtn" title="Download PDF to computer">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                  <polyline points="7 10 12 15 17 10"></polyline>
-                  <line x1="12" x2="12" y1="15" y2="3"></line>
-                </svg>
-                <span>Download PDF</span>
-              </a>
-
-              <!-- Upload new version (interactive local file picker) -->
-              <button type="button" class="btn btn-secondary" id="uploadResumeTriggerBtn" title="Select a new PDF from your computer to preview">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                  <polyline points="17 8 12 3 7 8"></polyline>
-                  <line x1="12" x2="3" y1="3" y2="15"></line>
-                </svg>
-                <span>Upload New Version</span>
-              </button>
-              <input type="file" id="resumeFileInput" accept=".pdf,application/pdf" style="display: none;">
+            <div class="chart-canvas-wrap">
+              <canvas id="heroChartCanvas"></canvas>
             </div>
 
-            <div class="resume-upload-note">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="16" x2="12" y2="12"></line>
-                <line x1="12" y1="8" x2="12.01" y2="8"></line>
-              </svg>
-              <span>To permanently connect your resume: Save your PDF file as <strong>"resume.pdf"</strong> in this portfolio folder.</span>
+            <div class="chart-toggles">
+              <button class="dataset-toggle-btn" data-mode="roc" style="border-color: var(--text-primary); font-weight: 800;">ROC Curves</button>
+              <button class="dataset-toggle-btn" data-mode="loss">Loss Convergence</button>
+              <button class="dataset-toggle-btn" data-mode="importance">SHAP Weights</button>
+            </div>
+
+            <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; color: var(--text-muted);">
+              <span>Cross-Val: 5-Fold Stratified</span>
+              <span style="color: #059669; font-weight: 700;">● All Tests Passing</span>
             </div>
           </div>
+        </div>
+      </div>
 
-          <div class="timeline">
-            
-            <!-- Role 1: Pathobiological Science Undergraduate Researcher -->
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              <div class="timeline-header">
-                <h3 class="timeline-role">Pathobiological Science Undergraduate Researcher</h3>
-                <span class="timeline-company">LSU School of Veterinary Medicine, Baton Rouge, LA</span>
-                <span class="timeline-date">Oct. 2025 — Present</span>
+      <span class="slide-corner-bl">STEPHSKO11@GMAIL.COM</span>
+      <div class="slide-corner-br">
+        <a href="#education" class="pill-arrow-btn" aria-label="Go to Education">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 4: EDUCATION (Page 5)
+         ========================================== -->
+    <section id="education" class="presentation-slide">
+      <span class="slide-corner-tl">ACADEMIC BACKGROUND</span>
+      <span class="slide-corner-tr">HONORS CURRICULUM</span>
+
+      <div class="slide-content-wrap">
+        <div class="edu-grid">
+          <div>
+            <h2 class="slide-heading">EDUCATION</h2>
+            <p class="toc-desc">
+              Academic rigor grounded in statistical theory, computer science, and healthcare analytics at Louisiana State University.
+            </p>
+          </div>
+
+          <div class="wireline-timeline">
+            <div class="wireline-spine"></div>
+
+            <div class="wireline-entry">
+              <div class="pill-node"></div>
+              <div class="wireline-content">
+                <div class="wireline-title-row">
+                  <h3 class="wireline-school">LOUISIANA STATE UNIVERSITY</h3>
+                  <span class="wireline-date">2023 — 2027</span>
+                </div>
+                <div class="wireline-degree">B.S. in Information Systems &amp; Analytics (Data Analytics Focus)</div>
+                <p class="wireline-details">
+                  Ogden Honors College · Dean's List · Top Academic Standing · Concentration in Machine Learning &amp; Health Informatics.
+                </p>
               </div>
-              <div class="timeline-body">
-                Applying computational and statistical modeling to oncology and biomedical datasets to inform drug efficacy and translational research.
-                <ul class="timeline-achievements">
+            </div>
+
+            <div class="wireline-entry">
+              <div class="pill-node"></div>
+              <div class="wireline-content">
+                <div class="wireline-title-row">
+                  <h3 class="wireline-school">ADVANCED QUANTITATIVE CURRICULUM</h3>
+                  <span class="wireline-date">BATON ROUGE, LA</span>
+                </div>
+                <div class="wireline-degree">Honors Statistical &amp; Computer Science Sequence</div>
+                <p class="wireline-details">
+                  Coursework: Database Management &amp; SQL, Predictive Modeling, Statistical Inference, Health Informatics, Quantitative Decision Analysis, and Data Engineering.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <span class="slide-corner-bl">STEPHSKO11@GMAIL.COM</span>
+      <div class="slide-corner-br">
+        <a href="#skills" class="pill-arrow-btn" aria-label="Go to Skills">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 5: PERSONAL & TECHNICAL SKILLS (Page 6)
+         ========================================== -->
+    <section id="skills" class="presentation-slide">
+      <span class="slide-corner-tl">CORE COMPETENCIES</span>
+      <span class="slide-corner-tr">TECHNICAL PROFILE</span>
+
+      <div class="slide-content-wrap">
+        <div class="skills-slide-center">
+          <h2 class="slide-heading">TECHNICAL SKILLS</h2>
+          <p class="skills-subhead">
+            Core quantitative, engineering, and analytical competencies applied to healthcare telemetry and biomedical datasets.
+          </p>
+
+          <!-- Horizontal Wireline (Page 6 Style) -->
+          <div class="horizontal-wireline-container">
+            <div class="horizontal-wireline-bar"></div>
+            <div class="horizontal-skill-cols">
+              <div class="skill-pillar">
+                <div class="pill-node"></div>
+                <h3 class="skill-pillar-title">DATA SCIENCE &amp; ML</h3>
+                <p class="skill-pillar-text">
+                  Python, XGBoost, Scikit-Learn, PyTorch, Statistical Modeling, Predictive Risk Stratification, Survival Analysis, Model Evaluation.
+                </p>
+              </div>
+
+              <div class="skill-pillar">
+                <div class="pill-node"></div>
+                <h3 class="skill-pillar-title">DATABASE &amp; PIPELINES</h3>
+                <p class="skill-pillar-text">
+                  SQL (SQLite, PostgreSQL), Pandas, NumPy, Data Cleaning, Median Imputation, Star Schema ETL Pipelines, FIPS Geocoding.
+                </p>
+              </div>
+
+              <div class="skill-pillar">
+                <div class="pill-node"></div>
+                <h3 class="skill-pillar-title">HEALTH &amp; EPIDEMIOLOGY</h3>
+                <p class="skill-pillar-text">
+                  CDC PLACES, CDC Social Vulnerability Index (SVI), CompuSyn, Translational Oncology Telemetry, Public Health Analytics.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <span class="slide-corner-bl">STEPHSKO11@GMAIL.COM</span>
+      <div class="slide-corner-br">
+        <a href="#experience" class="pill-arrow-btn" aria-label="Go to Work Experience">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 6: WORK EXPERIENCE (Page 7)
+         ========================================== -->
+    <section id="experience" class="presentation-slide">
+      <span class="slide-corner-tl">CAREER MILESTONES</span>
+      <span class="slide-corner-tr">RESEARCH &amp; INDUSTRY</span>
+
+      <div class="slide-content-wrap">
+        <div class="experience-grid">
+          <div>
+            <h2 class="slide-heading">WORK EXPERIENCE</h2>
+            <p class="toc-desc">
+              Academic research and industry experience conducting translational oncology analysis and large-scale hospital telemetry diagnostics.
+            </p>
+          </div>
+
+          <div class="wireline-timeline">
+            <div class="wireline-spine"></div>
+
+            <!-- Role 1: Researcher -->
+            <div class="experience-item">
+              <div class="pill-node"></div>
+              <div class="experience-content">
+                <div class="experience-header">
+                  <h3 class="experience-role">PATHOBIOLOGICAL SCIENCE RESEARCHER</h3>
+                  <span class="experience-date">OCT. 2025 — PRESENT</span>
+                </div>
+                <div class="experience-company">LSU School of Veterinary Medicine · Baton Rouge, LA</div>
+                <p class="experience-desc">
+                  Applying computational and statistical modeling to oncology and biomedical datasets to inform drug efficacy and translational research.
+                </p>
+                <ul class="experience-bullets">
                   <li>Applied R-based statistical modeling to analyze clinical data from A375 melanoma cell lines, bridging in vitro drug-response models with human clinical trial outcomes.</li>
                   <li>Quantified dose-effect relationships and drug-drug interactions using CompuSyn, generating preclinical datasets used to inform drug safety and efficacy assessments.</li>
                   <li>Modeled tumor growth dynamics and physiological treatment response to support translational oncology research.</li>
@@ -287,77 +415,232 @@
               </div>
             </div>
 
-            <!-- Role 2: Data Analyst Extern -->
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              <div class="timeline-header">
-                <h3 class="timeline-role">Data Analyst Extern</h3>
-                <span class="timeline-company">Trubridge Health Care, Remote</span>
-                <span class="timeline-date">Nov. 2025 — Dec. 2025</span>
-              </div>
-              <div class="timeline-body">
-                Conducted healthcare analytics and patient outcome modeling across large-scale hospital telemetry.
-                <ul class="timeline-achievements">
+            <!-- Role 2: Extern -->
+            <div class="experience-item">
+              <div class="pill-node"></div>
+              <div class="experience-content">
+                <div class="experience-header">
+                  <h3 class="experience-role">DATA ANALYST EXTERN</h3>
+                  <span class="experience-date">NOV. 2025 — DEC. 2025</span>
+                </div>
+                <div class="experience-company">Trubridge Health Care · Remote</div>
+                <p class="experience-desc">
+                  Conducted healthcare analytics and patient outcome modeling across large-scale hospital telemetry.
+                </p>
+                <ul class="experience-bullets">
                   <li>Applied descriptive analytics to large-scale healthcare datasets, building reports on patient admission rates and medication adherence for stakeholder review.</li>
                   <li>Performed diagnostic and cohort analysis to identify root-cause drivers of patient readmission trends, surfacing insights for clinical process improvement.</li>
                 </ul>
               </div>
             </div>
-
           </div>
         </div>
-      </section>
+      </div>
 
-      <!-- Contact & Connect Section -->
-      <section id="contact" class="section" style="padding-bottom: 2rem;">
-        <div class="container">
-          <div class="contact-card">
-            
-            <!-- Left Info -->
-            <div class="contact-info">
-              <p class="section-label">Get in Touch</p>
-              <h2 class="contact-info-title">Let's build something data-driven together.</h2>
-              <p class="contact-info-text">
-                Whether you have an interesting data science role, a consulting inquiry, or an open-source collaboration in mind, feel free to reach out. I'm always eager to discuss data systems and modeling challenges.
-              </p>
+      <span class="slide-corner-bl">STEPHSKO11@GMAIL.COM</span>
+      <div class="slide-corner-br">
+        <a href="#project" class="pill-arrow-btn" aria-label="Go to Projects">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </section>
 
-              <div class="contact-links-list">
-                <!-- Direct Email -->
-                <div class="contact-item-row">
-                  <div class="contact-item-icon">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <div style="font-size: 0.8rem; color: var(--text-muted);">Direct Email</div>
-                    <span style="font-weight: 500;">stephsko11@gmail.com</span>
-                  </div>
-                  <button id="copyEmailBtn" class="copy-email-btn" data-email="stephsko11@gmail.com" title="Copy email address">
-                    Copy
-                  </button>
-                </div>
+    <!-- ==========================================
+         SLIDE 7: PROJECT PORTFOLIO (Pages 8 & 9)
+         ========================================== -->
+    <section id="project" class="presentation-slide">
+      <span class="slide-corner-tl">PROJECT PORTFOLIO</span>
+      <span class="slide-corner-tr">FLAGSHIP RESEARCH</span>
 
-                <!-- LinkedIn -->
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="contact-item-row">
-                  <div class="contact-item-icon">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                      <rect width="4" height="12" x="2" y="9"></rect>
-                      <circle cx="4" cy="4" r="2"></circle>
-                    </svg>
-                  </div>
-                  <div>
-                    <div style="font-size: 0.8rem; color: var(--text-muted);">Professional Network</div>
-                    <span style="font-weight: 500;">linkedin.com/in/evekontcho</span>
-                  </div>
-                </a>
+      <div class="slide-content-wrap project-slide-wrap">
+        <div class="project-showcase-grid">
+          
+          <!-- Collage of Real Notebook Charts (Page 9 Style) -->
+          <div class="project-visual-collage">
+            <div class="collage-img-card">
+              <img src="epidemiology_eda_charts.png" alt="Exploratory Data Analysis: Diabetes Prevalence Distribution, Correlation Heatmap, and Poverty vs Diabetes Regression" loading="lazy">
+              <div class="collage-img-caption">Fig. 1: CDC SVI Correlation Heatmap &amp; High-Risk Thresholds</div>
+            </div>
+
+            <div class="collage-img-card">
+              <img src="epidemiology_model_eval_charts.png" alt="XGBoost Feature Importance, ROC Curve AUC 0.89, and Confusion Matrix" loading="lazy">
+              <div class="collage-img-caption">Fig. 2: Empirical XGBoost Diagnostics &amp; ROC-AUC Curve (0.892)</div>
+            </div>
+          </div>
+
+          <!-- Project Details & Actions -->
+          <div class="project-details-card">
+            <span class="project-tag-pill">FLAGSHIP RESEARCH STUDY</span>
+            <h2 class="project-main-title">PREDICTIVE EPIDEMIOLOGY: FORECASTING CHRONIC DISEASE RISK ZONES</h2>
+            <p class="project-main-desc">
+              Public health risk stratification pipeline integrating CDC PLACES and CDC SVI census tract datasets with SQLite and XGBoost to proactively identify high-risk chronic disease zones before outbreaks escalate.
+            </p>
+
+            <div class="project-metrics-quad">
+              <div class="project-metric-pill-card">
+                <div class="project-metric-val">0.892</div>
+                <div class="project-metric-name">ROC-AUC SCORE</div>
+              </div>
+              <div class="project-metric-pill-card">
+                <div class="project-metric-val">81.4%</div>
+                <div class="project-metric-name">PRECISION RATE</div>
+              </div>
+              <div class="project-metric-pill-card">
+                <div class="project-metric-val">84.7%</div>
+                <div class="project-metric-name">RECALL (VULNERABLE TRACTS)</div>
+              </div>
+              <div class="project-metric-pill-card">
+                <div class="project-metric-val">0.830</div>
+                <div class="project-metric-name">F1-SCORE</div>
               </div>
             </div>
 
-            <!-- Right Interactive Form -->
-            <form class="contact-form" id="portfolioContactForm">
+            <div class="project-action-buttons">
+              <button class="btn-pill btn-pill-primary view-deep-dive-btn" data-project-id="predictive-epidemiology">
+                <span>View Full Deep Dive</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </button>
+              <a href="https://github.com/EveKontcho/EveStephanieKontcho.github.io/blob/main/predictive_epidemiology.ipynb" target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill-secondary">
+                <span>Source Code (ipynb)</span>
+              </a>
+              <a href="predictive_epidemiology.html" target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill-secondary">
+                <span>Interactive Notebook</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <span class="slide-corner-bl">STEPHSKO11@GMAIL.COM</span>
+      <div class="slide-corner-br">
+        <a href="#resume" class="pill-arrow-btn" aria-label="Go to Curriculum Vitae">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- Hidden dynamic container for project rendering engine -->
+    <div id="projectsContainer" style="display: none;"></div>
+
+    <!-- ==========================================
+         SLIDE 8: RESUME & CURRICULUM VITAE
+         ========================================== -->
+    <section id="resume" class="presentation-slide">
+      <span class="slide-corner-tl">CURRICULUM VITAE</span>
+      <span class="slide-corner-tr">VERIFIED CREDENTIALS</span>
+
+      <div class="slide-content-wrap">
+        <div class="resume-access-slide">
+          <h2 class="slide-heading">CURRICULUM VITAE</h2>
+          <p class="toc-desc">
+            Access my verified biomedical research and healthcare data analytics resume PDF.
+          </p>
+
+          <div class="resume-card-box">
+            <h3 class="resume-card-filename" id="resumeFilenameLabel">Eve_Stephanie_Kontcho_Resume.pdf</h3>
+            <p class="resume-card-sub">Biomedical Research &amp; Healthcare Data Analytics (PDF Document)</p>
+
+            <div class="resume-btns-flex">
+              <a href="resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill-secondary" id="viewResumeBtn" title="View PDF in browser tab">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                <span>View Resume</span>
+              </a>
+
+              <a href="resume.pdf" download="Eve_Kontcho_Resume.pdf" class="btn-pill btn-pill-primary" id="downloadResumeBtn" title="Download PDF to computer">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Download PDF</span>
+              </a>
+
+              <button type="button" class="btn-pill btn-pill-secondary" id="uploadResumeTriggerBtn" title="Select a new PDF from your computer to preview">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="17 8 12 3 7 8"></polyline>
+                  <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <span>Upload New Version</span>
+              </button>
+              <input type="file" id="resumeFileInput" accept=".pdf,application/pdf" style="display: none;">
+            </div>
+
+            <p class="resume-note-micro">
+              To permanently connect your resume: Save your PDF file as <strong>"resume.pdf"</strong> in this portfolio folder.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <span class="slide-corner-bl">STEPHSKO11@GMAIL.COM</span>
+      <div class="slide-corner-br">
+        <a href="#contact" class="pill-arrow-btn" aria-label="Go to Contact">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 9: THANK YOU & CONTACT (Page 11)
+         ========================================== -->
+    <section id="contact" class="presentation-slide">
+      <span class="slide-corner-tl">GET IN TOUCH</span>
+      <span class="slide-corner-tr">BATON ROUGE, LA</span>
+
+      <div class="slide-content-wrap">
+        <div class="outro-header-block">
+          <p class="outro-super-title">THANK YOU</p>
+          <h2 class="outro-massive-title">SO MUCH!</h2>
+          <p class="outro-sub-title">PRESENTATION BY EVE KONTCHO</p>
+        </div>
+
+        <div class="contact-split-grid">
+          <div class="contact-details-col">
+            <p class="intro-body-text">
+              Whether you have an interesting data science role, a consulting inquiry, or an open-source collaboration in mind, feel free to reach out. I'm always eager to discuss data systems and modeling challenges.
+            </p>
+
+            <!-- Direct Email -->
+            <div class="contact-row-card">
+              <div>
+                <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.2rem;">Direct Email</div>
+                <span style="font-weight: 700; font-family: 'JetBrains Mono', monospace;">stephsko11@gmail.com</span>
+              </div>
+              <button id="copyEmailBtn" class="copy-mini-btn" data-email="stephsko11@gmail.com" title="Copy email address">
+                Copy
+              </button>
+            </div>
+
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="contact-row-card">
+              <div>
+                <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.2rem;">Professional Network</div>
+                <span style="font-weight: 700; font-family: 'JetBrains Mono', monospace;">linkedin.com/in/evekontcho</span>
+              </div>
+              <span class="copy-mini-btn">Connect &rarr;</span>
+            </a>
+          </div>
+
+          <!-- Right Interactive Form -->
+          <div class="contact-form-col">
+            <form id="portfolioContactForm">
               <div class="form-group">
                 <label for="contactName" class="form-label">Your Name</label>
                 <input type="text" id="contactName" class="form-input" placeholder="e.g. Sarah Jenkins" required>
@@ -370,7 +653,7 @@
 
               <div class="form-group">
                 <label for="contactSubject" class="form-label">Opportunity / Subject</label>
-                <input type="text" id="contactSubject" class="form-input" placeholder="e.g. Senior Data Scientist Role / Project Collaboration" required>
+                <input type="text" id="contactSubject" class="form-input" placeholder="e.g. Health Data Scientist Role" required>
               </div>
 
               <div class="form-group">
@@ -378,7 +661,7 @@
                 <textarea id="contactMessage" class="form-textarea" placeholder="Tell me about your team, problem space, or dataset..." required></textarea>
               </div>
 
-              <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem; width: 100%;">
+              <button type="submit" class="btn-pill btn-pill-primary" style="width: 100%; justify-content: center; margin-top: 0.5rem;">
                 <span>Send Message</span>
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="22" y1="2" x2="11" y2="13"></line>
@@ -386,38 +669,32 @@
                 </svg>
               </button>
             </form>
-
           </div>
         </div>
-      </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-      <div class="container footer-content">
-        <div>
-          <span>© 2026 Eve Kontcho. Built with clean semantic web standards & zero frameworks.</span>
-        </div>
-        <div class="footer-links">
-          <a href="#hero" class="footer-link">Back to Top</a>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
-        </div>
       </div>
-    </footer>
 
-  </div>
+      <span class="slide-corner-bl">STEPHSKO11@GMAIL.COM</span>
+      <div class="slide-corner-br">
+        <a href="#hero" class="pill-arrow-btn" aria-label="Back to Top">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+  </main>
 
   <!-- Interactive Project Deep Dive Modal (<dialog>) -->
   <dialog id="projectDetailModal" class="project-modal" aria-labelledby="modalProjectTitle">
     <div class="modal-header">
       <div>
         <h3 id="modalProjectTitle" class="modal-title">Project Deep Dive</h3>
-        <p id="modalProjectTagline" style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">Methodology, Metrics & Engineering Architecture</p>
+        <p id="modalProjectTagline" style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">Methodology, Metrics &amp; Engineering Architecture</p>
       </div>
       <button id="closeModalBtn" class="modal-close-btn" aria-label="Close Modal Window">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
@@ -425,34 +702,19 @@
     </div>
 
     <div class="modal-body" id="modalDynamicBody">
-      <!-- Quantitative Metrics Grid -->
-      <div class="modal-overview-grid" id="modalMetricsGrid">
-        <!-- Injected via JavaScript -->
-      </div>
-
-      <!-- Problem Statement -->
-      <h4 class="modal-section-heading">Business Problem & Context</h4>
-      <p id="modalProblemStatement" class="modal-text"></p>
-
-      <!-- Technical Methodology -->
-      <h4 class="modal-section-heading">Statistical Modeling & Architecture</h4>
-      <p id="modalMethodology" class="modal-text"></p>
-
-      <!-- Code Snippet Preview -->
-      <h4 class="modal-section-heading">Production Code & Model Pipeline</h4>
-      <pre class="code-block-preview"><code id="modalCodeBlock"></code></pre>
+      <!-- Injected dynamically by script.js -->
     </div>
 
     <div class="modal-footer">
-      <button id="modalCloseFooterBtn" class="btn btn-secondary">Close</button>
-      <a id="modalGithubBtn" href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+      <button id="modalCloseFooterBtn" class="btn-pill btn-pill-secondary">Close</button>
+      <a id="modalGithubBtn" href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill-secondary">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
           <path d="M9 18c-4.51 2-5-2-7-2"></path>
         </svg>
         <span>Source Code</span>
       </a>
-      <a id="modalDemoBtn" href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+      <a id="modalDemoBtn" href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill-primary">
         <span>Interactive Demo</span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
@@ -464,6 +726,6 @@
   </dialog>
 
   <!-- Interactive JavaScript Engine -->
-  <script src="script.js"></script>
+  <script src="script.js?v=3.0"></script>
 </body>
 </html>

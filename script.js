@@ -54,9 +54,9 @@ const PROJECTS_DATA = [
         <h4 class="modal-section-heading">Project Overview</h4>
         <div class="tech-stack-pill-box">
           <span>Tech Stack:</span>
-          <strong style="color: #ffffff;">SQL (SQLite)</strong> | 
-          <strong style="color: #ffffff;">Python (pandas, scikit-learn, XGBoost)</strong> | 
-          <strong style="color: #ffffff;">Data Visualization</strong>
+          <strong>SQL (SQLite)</strong> | 
+          <strong>Python (pandas, scikit-learn, XGBoost)</strong> | 
+          <strong>Data Visualization</strong>
         </div>
         <p class="modal-text">
           Public health resources are finite. This project demonstrates how to use socioeconomic, environmental, and demographic data to proactively identify localized geographic areas at the highest risk for chronic disease progression, specifically diabetes, before outbreaks occur. By leveraging public datasets, this pipeline translates complex demographic metrics into actionable, predictive insights for targeted intervention.
@@ -195,18 +195,18 @@ model.fit(X_train, y_train)</code></pre>
                 <td>Strong capability to differentiate high-risk tracts from baseline communities.</td>
               </tr>
               <tr>
-                <td><strong style="color: var(--accent-cyan);">Precision</strong></td>
-                <td><span class="mono-font" style="color: var(--accent-primary); font-weight: 700;">0.814</span></td>
+                <td><strong style="color: var(--text-primary);">Precision</strong></td>
+                <td><span class="mono-font" style="color: var(--accent-blue); font-weight: 700;">0.814</span></td>
                 <td>Minimizes wasted clinical interventions by ensuring high accuracy on flagged areas.</td>
               </tr>
               <tr>
-                <td><strong style="color: var(--accent-cyan);">Recall</strong></td>
-                <td><span class="mono-font" style="color: var(--accent-primary); font-weight: 700;">0.847</span></td>
+                <td><strong style="color: var(--text-primary);">Recall</strong></td>
+                <td><span class="mono-font" style="color: var(--accent-blue); font-weight: 700;">0.847</span></td>
                 <td>Captures the vast majority of genuinely vulnerable communities without oversight.</td>
               </tr>
               <tr>
-                <td><strong style="color: var(--accent-cyan);">F1-Score</strong></td>
-                <td><span class="mono-font" style="color: var(--accent-primary); font-weight: 700;">0.830</span></td>
+                <td><strong style="color: var(--text-primary);">F1-Score</strong></td>
+                <td><span class="mono-font" style="color: var(--accent-blue); font-weight: 700;">0.830</span></td>
                 <td>Balanced harmonic measure of overall classification effectiveness.</td>
               </tr>
             </tbody>
@@ -235,7 +235,7 @@ model.fit(X_train, y_train)</code></pre>
 
         <!-- Actionable Impact -->
         <h4 class="modal-section-heading">Policy Shift & Actionable Public Health Allocation</h4>
-        <p class="modal-text" style="border-left: 3px solid var(--accent-emerald); padding-left: 1rem; color: #ffffff;">
+        <p class="modal-text" style="border-left: 3px solid var(--accent-blue); padding-left: 1rem; color: var(--text-primary); font-weight: 500;">
           This shift allows public health officials to transition from reactive care to proactive, evidence-based resource allocation, deploying mobile screening units and community nutrition programs directly to high-risk census tracts.
         </p>
       `
@@ -320,8 +320,8 @@ function initOrUpdateChart() {
   if (!ctx) return;
 
   const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-  const gridColor = isDark ? "rgba(59, 130, 246, 0.12)" : "rgba(0, 80, 200, 0.08)";
-  const textColor = isDark ? "#93b4e6" : "#1e3a8a";
+  const gridColor = isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(26, 26, 26, 0.08)";
+  const textColor = isDark ? "#D1D1CF" : "#1A1A1A";
 
   const config = CHART_CONFIGS[currentChartMode];
   const chartType = currentChartMode === "importance" ? "bar" : "line";
@@ -342,7 +342,17 @@ function initOrUpdateChart() {
     type: chartType,
     data: {
       labels: config.labels,
-      datasets: config.datasets
+      datasets: config.datasets.map(ds => {
+        // Adapt colors dynamically to match slide presentation palette
+        if (currentChartMode === "importance") {
+          return {
+            ...ds,
+            backgroundColor: isDark ? "rgba(96, 165, 250, 0.85)" : "#1A1A1A",
+            borderColor: isDark ? "#60A5FA" : "#121212"
+          };
+        }
+        return ds;
+      })
     },
     options: {
       responsive: true,
@@ -356,16 +366,16 @@ function initOrUpdateChart() {
           position: "top",
           labels: {
             color: textColor,
-            font: { family: "Inter", size: 11, weight: "500" },
+            font: { family: "Inter", size: 11, weight: "600" },
             boxWidth: 12
           }
         },
         tooltip: {
-          backgroundColor: isDark ? "#060b16" : "#ffffff",
-          titleColor: isDark ? "#ffffff" : "#0a192f",
-          bodyColor: isDark ? "#93b4e6" : "#1e3a8a",
-          borderColor: isDark ? "#1d3b7a" : "#bfdbfe",
-          borderWidth: 1,
+          backgroundColor: isDark ? "#222222" : "#ECEAE5",
+          titleColor: isDark ? "#FFFFFF" : "#121212",
+          bodyColor: isDark ? "#D1D1CF" : "#2A2A2A",
+          borderColor: isDark ? "#444444" : "#1A1A1A",
+          borderWidth: 1.5,
           padding: 10,
           cornerRadius: 8,
           bodyFont: { family: "JetBrains Mono", size: 12 }
@@ -391,66 +401,66 @@ function initOrUpdateChart() {
 }
 
 // ==========================================
-// 3. Render Projects Grid
+// 3. Render Projects Grid & Bind Deep Dive Triggers
 // ==========================================
 function renderProjects(filter = "all") {
   const container = document.getElementById("projectsContainer");
-  if (!container) return;
+  if (container) {
+    const filtered = filter === "all" 
+      ? PROJECTS_DATA 
+      : PROJECTS_DATA.filter(p => p.category === filter);
 
-  const filtered = filter === "all" 
-    ? PROJECTS_DATA 
-    : PROJECTS_DATA.filter(p => p.category === filter);
-
-  container.innerHTML = filtered.map(p => `
-    <article class="project-card" data-id="${p.id}" data-category="${p.category}">
-      <div class="project-card-header">
-        <div class="project-category-row">
-          <span class="project-category-badge">${p.categoryLabel}</span>
-          <span class="project-metric-pill">${p.badge}</span>
-        </div>
-        <h3 class="project-title">${p.title}</h3>
-      </div>
-      <p class="project-desc">${p.description}</p>
-      
-      <div class="project-card-preview">
-        ${p.previewStats.map(stat => `
-          <div class="preview-stat-row">
-            <span class="preview-stat-label">${stat.label}</span>
-            <span class="preview-stat-val mono-font">${stat.val}</span>
+    container.innerHTML = filtered.map(p => `
+      <article class="project-card" data-id="${p.id}" data-category="${p.category}">
+        <div class="project-card-header">
+          <div class="project-category-row">
+            <span class="project-category-badge">${p.categoryLabel}</span>
+            <span class="project-metric-pill">${p.badge}</span>
           </div>
-        `).join("")}
-      </div>
-
-      <div class="project-tags">
-        ${p.tags.map(tag => `<span class="tech-tag">${tag}</span>`).join("")}
-      </div>
-
-      <div class="project-card-footer">
-        <button class="project-action-link view-deep-dive-btn" data-project-id="${p.id}">
-          <span>View Deep Dive</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14"></path>
-            <path d="m12 5 7 7-7 7"></path>
-          </svg>
-        </button>
-        <div style="display:flex; gap:0.75rem;">
-          <a href="${p.modal.githubUrl}" target="_blank" rel="noopener noreferrer" class="project-icon-btn" title="View Code Repository" aria-label="GitHub Repository">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-              <path d="M9 18c-4.51 2-5-2-7-2"></path>
-            </svg>
-          </a>
+          <h3 class="project-title">${p.title}</h3>
         </div>
-      </div>
-    </article>
-  `).join("");
+        <p class="project-desc">${p.description}</p>
+        
+        <div class="project-card-preview">
+          ${p.previewStats.map(stat => `
+            <div class="preview-stat-row">
+              <span class="preview-stat-label">${stat.label}</span>
+              <span class="preview-stat-val mono-font">${stat.val}</span>
+            </div>
+          `).join("")}
+        </div>
 
-  // Attach click listeners to Deep Dive buttons
-  container.querySelectorAll(".view-deep-dive-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const pid = btn.getAttribute("data-project-id");
+        <div class="project-tags">
+          ${p.tags.map(tag => `<span class="tech-tag">${tag}</span>`).join("")}
+        </div>
+
+        <div class="project-card-footer">
+          <button class="project-action-link view-deep-dive-btn" data-project-id="${p.id}">
+            <span>View Deep Dive</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </button>
+          <div style="display:flex; gap:0.75rem;">
+            <a href="${p.modal.githubUrl}" target="_blank" rel="noopener noreferrer" class="project-icon-btn" title="View Code Repository" aria-label="GitHub Repository">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                <path d="M9 18c-4.51 2-5-2-7-2"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+    `).join("");
+  }
+
+  // Attach click listeners to all Deep Dive buttons across the entire page (including Slide 7)
+  document.querySelectorAll(".view-deep-dive-btn").forEach(btn => {
+    btn.onclick = () => {
+      const pid = btn.getAttribute("data-project-id") || "predictive-epidemiology";
       openProjectModal(pid);
-    });
+    };
   });
 }
 
@@ -540,12 +550,12 @@ function setupModal() {
 function setupThemeToggle() {
   const themeToggleBtn = document.getElementById("themeToggleBtn");
   const savedTheme = localStorage.getItem("preferred-theme");
-  const initialTheme = savedTheme || "dark";
+  const initialTheme = savedTheme || "light";
   setTheme(initialTheme);
 
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener("click", () => {
-      const current = document.documentElement.getAttribute("data-theme") || "dark";
+      const current = document.documentElement.getAttribute("data-theme") || "light";
       const next = current === "dark" ? "light" : "dark";
       setTheme(next);
       localStorage.setItem("preferred-theme", next);
@@ -665,8 +675,12 @@ function setupFiltersAndControls() {
   const chartToggleButtons = document.querySelectorAll(".dataset-toggle-btn");
   chartToggleButtons.forEach(btn => {
     btn.addEventListener("click", () => {
-      chartToggleButtons.forEach(b => b.style.borderColor = "var(--border-subtle)");
-      btn.style.borderColor = "var(--accent-primary)";
+      chartToggleButtons.forEach(b => {
+        b.style.borderColor = "var(--border-subtle)";
+        b.style.fontWeight = "600";
+      });
+      btn.style.borderColor = "var(--border-dark)";
+      btn.style.fontWeight = "800";
       currentChartMode = btn.getAttribute("data-mode");
       initOrUpdateChart();
     });
