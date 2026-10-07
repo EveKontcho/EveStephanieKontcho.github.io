@@ -240,6 +240,230 @@ model.fit(X_train, y_train)</code></pre>
         </p>
       `
     }
+  },
+  {
+    id: "caffeine-finder",
+    title: "Caffeine Finder: Agile Project Management & Scrum Facilitation",
+    category: "agile",
+    categoryLabel: "Agile & Scrum Facilitation",
+    badge: "87 Story Pts Delivered",
+    description: "Facilitated a 7-person cross-functional Scrum team through a high-velocity 10-day sprint cycle. Managed a 29-item Product Backlog, executed Planning Poker estimation, tracked velocity via a Sprint Burndown Chart (100% of 87 story points completed), and led retrospectives.",
+    previewStats: [
+      { label: "Sprint Completion", val: "87 / 87 Pts" },
+      { label: "Cross-Functional Team", val: "7 Members" }
+    ],
+    tags: ["Scrum Master", "Agile Framework", "Planning Poker", "Sprint Burndown", "Product Backlog", "Retrospectives"],
+    modal: {
+      tagline: "Cross-Functional Agile Leadership, Sprint Planning & Quantitative Burndown Analytics",
+      metrics: [
+        { label: "Story Points", val: "87 pts" },
+        { label: "Product Backlog", val: "29 Stories" },
+        { label: "Team Size", val: "7 Members" },
+        { label: "Sprint Timeline", val: "10 Days" }
+      ],
+      githubUrl: "caffeine_finder_slides.pdf",
+      demoUrl: "caffeine_finder_case_study.pdf",
+      customHtml: `
+        <!-- Quantitative Metrics Grid -->
+        <div class="modal-overview-grid">
+          <div class="modal-stat-box">
+            <div class="modal-stat-box-val mono-font">87 pts</div>
+            <div class="modal-stat-box-label">Story Points Completed</div>
+          </div>
+          <div class="modal-stat-box">
+            <div class="modal-stat-box-val mono-font">29</div>
+            <div class="modal-stat-box-label">Product Backlog Stories</div>
+          </div>
+          <div class="modal-stat-box">
+            <div class="modal-stat-box-val mono-font">7</div>
+            <div class="modal-stat-box-label">Cross-Functional Team</div>
+          </div>
+          <div class="modal-stat-box">
+            <div class="modal-stat-box-val mono-font">10 Days</div>
+            <div class="modal-stat-box-label">Sprint Timeline</div>
+          </div>
+        </div>
+
+        <!-- Case Study Summary & CSM Credential Aim -->
+        <h4 class="modal-section-heading">Professional Summary &amp; Certified ScrumMaster (CSM) Preparation</h4>
+        <div class="tech-stack-pill-box">
+          <span>Agile Framework:</span>
+          <strong>Scrum Master Facilitation</strong> | 
+          <strong>Planning Poker (Fibonacci)</strong> | 
+          <strong>Sprint Burndown Analytics</strong> | 
+          <strong>Continuous Retrospective</strong>
+        </div>
+        <p class="modal-text">
+          This case study highlights my practical application of Agile methodologies, servant leadership, and Scrum facilitation. In preparation for the <strong>Certified ScrumMaster (CSM)</strong> credential, I facilitated a 7-person cross-functional team through a full 10-day sprint cycle to deliver a user-centric software solution for Louisiana State University (LSU) students.
+        </p>
+
+        <!-- Team Structure -->
+        <h4 class="modal-section-heading">Cross-Functional Scrum Team Organization</h4>
+        <div class="modal-table-container">
+          <table class="modal-table">
+            <thead>
+              <tr>
+                <th>Scrum Role</th>
+                <th>Team Member(s)</th>
+                <th>Core Responsibilities</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong style="color: var(--accent-emerald);">Scrum Master</strong></td>
+                <td><strong>Eve Kontcho</strong></td>
+                <td>Facilitated Scrum ceremonies (Sprint Planning, Daily Standups, Retrospective), cleared blockers, and monitored velocity using a Sprint Burndown Chart.</td>
+              </tr>
+              <tr>
+                <td><strong>Product Owner</strong></td>
+                <td>Aaliyah Ware</td>
+                <td>Defined product vision, maintained customer alignment, prioritized the 29-item Product Backlog, and validated user story acceptance criteria.</td>
+              </tr>
+              <tr>
+                <td><strong>Developers (5)</strong></td>
+                <td>Thien Vu, Elizabeth Schlamel, Mika Devillier, Khalil Abdullah, Treylan Williams</td>
+                <td>Cross-functional implementation covering geolocation mapping, API integrations, drink menu filters, UI components, and test automation.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 1. Product Vision & Problem Space -->
+        <h4 class="modal-section-heading">1. Product Vision &amp; Student Problem Space</h4>
+        <p class="modal-text">
+          University students juggle rigorous class schedules, study groups, tight budgets, and dietary restrictions. Prior to <em>Caffeine Finder</em>, students relied on fragmented apps, static campus directories, and word-of-mouth to find open coffee spots, resulting in wasted walking time and missed deals.
+        </p>
+        <p class="modal-text" style="margin-top: 0.6rem;">
+          <strong>The Solution:</strong> A consolidated mobile platform aggregating nearby cafes, coffee shops, campus dining locations, vending areas, and sponsored events into a single, intuitive interface matching students' location, schedule, dietary preferences, and budget.
+        </p>
+
+        <!-- 2. Backlog Management & Requirements Gathering -->
+        <h4 class="modal-section-heading">2. Backlog Management &amp; Requirements Gathering</h4>
+        <p class="modal-text">
+          As Scrum Master, I worked closely with the Product Owner to decompose high-level epics into <strong>29 granular, INVEST-compliant user stories</strong> across six core functional domains:
+        </p>
+        <ul class="modal-list">
+          <li><strong>Core Geolocation &amp; Mapping (Stories 1, 4, 5, 6, 9):</strong> List nearby vendors, render labeled map pins, show real-time GPS position, sort by proximity, and launch turn-by-turn routing.</li>
+          <li><strong>Location Profiles &amp; Real-Time Status (Stories 2, 3, 7, 8):</strong> Full addresses, operating hours, quick search by name, live Open/Closed badge, and "Open Now" filter.</li>
+          <li><strong>Menus, Dietary Preferences &amp; Pricing (Stories 10, 11, 12, 13, 14, 15):</strong> Beverage menus, coffee/tea/energy drink filters, "Dairy-Free" tags, price tiers ($, $$, $$$), and estimated caffeine content.</li>
+          <li><strong>Campus Life &amp; Events (Stories 16, 17, 18, 19):</strong> Upcoming campus caffeine events, admission costs, free event filters, and student discount badges.</li>
+          <li><strong>Study Amenities (Stories 20, 21, 22):</strong> Study-focused filters for free high-speed Wi-Fi, indoor/outdoor customer seating, and accessible electrical outlets.</li>
+          <li><strong>Engagement &amp; Moderation (Stories 23–29):</strong> Favoriting spots, push event reminders, star ratings, written reviews, crowd-sourced location submissions, and admin approval workflows.</li>
+        </ul>
+
+        <!-- 3. Planning Poker & Sprint Scoping -->
+        <h4 class="modal-section-heading">3. Planning Poker Estimation &amp; Sprint Scoping (87 Story Points)</h4>
+        <p class="modal-text">
+          To build consensus on technical effort, I facilitated Planning Poker sessions using the Fibonacci sequence (1, 2, 3, 5, 8, 13, 20, 40). By encouraging open debate whenever developer estimates diverged, the team uncovered hidden technical hurdles early (e.g. background GPS battery drain vs. turn-by-turn routing modals).
+        </p>
+        <p class="modal-text" style="margin-top: 0.6rem;">
+          To deliver a tangible Minimum Viable Product (MVP) within the 10-day sprint, the team scoped the top 10 prioritized user stories, committing to <strong>87 total story points</strong>:
+        </p>
+
+        <div class="modal-table-container">
+          <table class="modal-table">
+            <thead>
+              <tr>
+                <th>Priority</th>
+                <th>Backlog Item</th>
+                <th>User Story</th>
+                <th>Planning Poker</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#1</td>
+                <td><strong>Display caffeine locations</strong></td>
+                <td>As a student, I want a list of nearby cafes, restaurants, and campus vendors selling caffeinated drinks so that I can compare my options.</td>
+                <td><span class="mono-font" style="font-weight: 800;">20 pts</span></td>
+              </tr>
+              <tr>
+                <td>#2</td>
+                <td><strong>Display location details &amp; hours</strong></td>
+                <td>As a student, I want each location profile to show its address, hour, and description so that I can decide where and when to visit.</td>
+                <td><span class="mono-font" style="font-weight: 800;">5 pts</span></td>
+              </tr>
+              <tr>
+                <td>#3</td>
+                <td><strong>Search by location name</strong></td>
+                <td>As a student, I want to search for a location by name so that I can quickly find a specific cafe, restaurant, or campus vendor.</td>
+                <td><span class="mono-font" style="font-weight: 800;">5 pts</span></td>
+              </tr>
+              <tr>
+                <td>#4</td>
+                <td><strong>Display caffeine locations on a map</strong></td>
+                <td>As a student, I want caffeine locations shown as labeled map pins so that I can compare where the available options are located.</td>
+                <td><span class="mono-font" style="font-weight: 800;">8 pts</span></td>
+              </tr>
+              <tr>
+                <td>#5</td>
+                <td><strong>Display current position on map</strong></td>
+                <td>As a student, I want my current position shown on the map so that I can use it as a reference for nearby caffeine locations.</td>
+                <td><span class="mono-font" style="font-weight: 800;">13 pts</span></td>
+              </tr>
+              <tr>
+                <td>#6</td>
+                <td><strong>Sort locations by distance</strong></td>
+                <td>As a student, I want locations ordered from nearest to farthest based on my current position so that I can choose the closest option.</td>
+                <td><span class="mono-font" style="font-weight: 800;">5 pts</span></td>
+              </tr>
+              <tr>
+                <td>#7</td>
+                <td><strong>Show open or closed status</strong></td>
+                <td>As a student, I want to know the current opened or closed status of the shop so I know if it is available at the time of search.</td>
+                <td><span class="mono-font" style="font-weight: 800;">3 pts</span></td>
+              </tr>
+              <tr>
+                <td>#8</td>
+                <td><strong>Filter to open locations</strong></td>
+                <td>As a student, I want an "Open Now" filter to hide any closed locations so only currently available options show in the search.</td>
+                <td><span class="mono-font" style="font-weight: 800;">3 pts</span></td>
+              </tr>
+              <tr>
+                <td>#9</td>
+                <td><strong>Provide navigation directions</strong></td>
+                <td>As a student, I want to open turn-by-turn directions to a selected location so that I can navigate there easily.</td>
+                <td><span class="mono-font" style="font-weight: 800;">20 pts</span></td>
+              </tr>
+              <tr>
+                <td>#10</td>
+                <td><strong>Display drink menus</strong></td>
+                <td>As a student, I want to view a location’s drink menu so that I can see whether it offers a beverage I want.</td>
+                <td><span class="mono-font" style="font-weight: 800;">5 pts</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 4. Sprint Execution & Burndown Analytics -->
+        <h4 class="modal-section-heading">4. Sprint Execution &amp; Burndown Velocity Monitoring</h4>
+        <p class="modal-text">
+          Across the 10-day cycle, I tracked sprint velocity daily using a <strong>Sprint Burndown Chart</strong> comparing the ideal linear burndown (8.7 pts/day) against actual points completed. Daily standups served to identify and remove blockers immediately, preventing bottlenecks in complex features like GPS positioning and turn-by-turn routing.
+        </p>
+        <p class="modal-text" style="border-left: 3px solid #059669; padding-left: 1rem; color: var(--text-primary); font-weight: 500; margin-top: 0.75rem;">
+          <strong>Sprint Result:</strong> The team burned down all 87 story points right on schedule by Day 10, achieving 100% velocity fulfillment with zero unfinished backlog debt.
+        </p>
+
+        <!-- 5. Retrospective Ceremony -->
+        <h4 class="modal-section-heading">5. Agile Retrospective &amp; Continuous Improvement</h4>
+        <p class="modal-text">
+          I facilitated the end-of-sprint retrospective ceremony, championing a blameless culture of reflection across three structured pillars:
+        </p>
+        <ul class="modal-list">
+          <li><strong>What Went Right:</strong> Strong user story articulation, vibrant Planning Poker debates that built technical consensus, high team morale, and disciplined timeboxed meetings.</li>
+          <li><strong>What Went Wrong:</strong> Discovered slight overlapping functionality between backlog stories; developers experienced difficulty phrasing complex backend API tasks purely as consumer user stories; communication was occasionally fragmented across personal chats.</li>
+          <li><strong>Actionable Improvements Adopted:</strong> Implemented pre-sprint technical spikes to evaluate architectural feasibility before estimation; instituted strict Acceptance Criteria and Definition of Done (DoD); and consolidated all blocker tracking in a centralized repository board.</li>
+        </ul>
+
+        <!-- 6. Scrum Master Competencies -->
+        <h4 class="modal-section-heading">Recruiter Takeaways: Core Competencies Demonstrated</h4>
+        <ul class="modal-list">
+          <li><strong>Servant Leadership:</strong> Empowered 5 developers and collaborated with the Product Owner to maintain alignment and high team velocity.</li>
+          <li><strong>Quantitative Metric Governance:</strong> Managed sprint health using burndown trendlines, story points, and velocity metrics.</li>
+          <li><strong>Agile Facilitation &amp; Coaching:</strong> Championed Scrum values, relative estimation, and continuous retrospective refinement.</li>
+        </ul>
+      `
+    }
   }
 ];
 
@@ -409,6 +633,149 @@ function initOrUpdateChart() {
 }
 
 // ==========================================
+// 2b. Caffeine Finder Sprint Burndown Chart
+// ==========================================
+let burndownChart = null;
+
+function initOrUpdateBurndownChart() {
+  const ctx = document.getElementById("burndownChartCanvas");
+  if (!ctx) return;
+
+  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+  const gridColor = isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(26, 26, 26, 0.08)";
+  const textColor = isDark ? "#D1D1CF" : "#1A1A1A";
+
+  if (burndownChart) {
+    burndownChart.destroy();
+  }
+
+  if (typeof Chart === "undefined") return;
+
+  burndownChart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: ["Day 0", "Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7", "Day 8", "Day 9", "Day 10"],
+      datasets: [
+        {
+          label: "Ideal Burndown (8.7 pts/day)",
+          data: [87, 78.3, 69.6, 60.9, 52.2, 43.5, 34.8, 26.1, 17.4, 8.7, 0],
+          borderColor: isDark ? "#888885" : "#767672",
+          borderDash: [5, 5],
+          borderWidth: 2,
+          pointRadius: 3,
+          pointBackgroundColor: isDark ? "#888885" : "#767672",
+          fill: false,
+          tension: 0
+        },
+        {
+          label: "Actual Burndown (Velocity Tracked)",
+          data: [87, 79, 71, 62, 53, 44, 35, 26, 17, 8, 0],
+          borderColor: isDark ? "#10B981" : "#059669",
+          backgroundColor: isDark ? "rgba(16, 185, 129, 0.12)" : "rgba(5, 150, 105, 0.08)",
+          borderWidth: 2.5,
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          pointBackgroundColor: isDark ? "#10B981" : "#059669",
+          fill: true,
+          tension: 0.15
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: {
+        mode: "index",
+        intersect: false
+      },
+      plugins: {
+        legend: {
+          position: "top",
+          labels: {
+            color: textColor,
+            font: { family: "Inter", size: 11, weight: "600" },
+            boxWidth: 14
+          }
+        },
+        tooltip: {
+          backgroundColor: isDark ? "#222222" : "#ECEAE5",
+          titleColor: isDark ? "#FFFFFF" : "#121212",
+          bodyColor: isDark ? "#D1D1CF" : "#2A2A2A",
+          borderColor: isDark ? "#444444" : "#1A1A1A",
+          borderWidth: 1.5,
+          padding: 10,
+          cornerRadius: 8,
+          bodyFont: { family: "JetBrains Mono", size: 12 },
+          callbacks: {
+            label: function(context) {
+              return `${context.dataset.label}: ${context.parsed.y} pts remaining`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: gridColor },
+          ticks: { color: textColor, font: { family: "JetBrains Mono", size: 10 } }
+        },
+        y: {
+          min: 0,
+          max: 100,
+          grid: { color: gridColor },
+          ticks: {
+            color: textColor,
+            font: { family: "JetBrains Mono", size: 10 },
+            stepSize: 20
+          },
+          title: {
+            display: true,
+            text: "Story Points",
+            color: textColor,
+            font: { family: "JetBrains Mono", size: 10, weight: "700" }
+          }
+        }
+      }
+    }
+  });
+}
+
+function setupCaffeineSandbox() {
+  const toggleButtons = document.querySelectorAll(".caffeine-toggle-btn");
+  const subheadTitle = document.getElementById("caffeineDynamicTitle");
+  const burndownPane = document.getElementById("caffeineBurndownContainer");
+  const backlogPane = document.getElementById("caffeineBacklogContainer");
+  const retroPane = document.getElementById("caffeineRetroContainer");
+
+  const TITLES = {
+    burndown: "Sprint Burndown Velocity: Tracking 87 Story Points to Zero Across 10 Days",
+    backlog: "Sprint Backlog: 10 Prioritized User Stories Scoped via Planning Poker",
+    retro: "Agile Retrospective: Inspect & Adapt Analysis for Continuous Delivery"
+  };
+
+  toggleButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      toggleButtons.forEach(b => b.classList.remove("active-toggle"));
+      btn.classList.add("active-toggle");
+
+      const mode = btn.getAttribute("data-caffeine-mode");
+      if (subheadTitle && TITLES[mode]) {
+        subheadTitle.textContent = TITLES[mode];
+      }
+
+      if (burndownPane) burndownPane.classList.toggle("is-hidden", mode !== "burndown");
+      if (backlogPane) backlogPane.classList.toggle("is-hidden", mode !== "backlog");
+      if (retroPane) retroPane.classList.toggle("is-hidden", mode !== "retro");
+
+      if (mode === "burndown") {
+        setTimeout(() => {
+          initOrUpdateBurndownChart();
+        }, 50);
+      }
+    });
+  });
+}
+
+// ==========================================
 // 3. Render Projects Grid & Bind Deep Dive Triggers
 // ==========================================
 function renderProjects(filter = "all") {
@@ -508,8 +875,54 @@ function openProjectModal(projectId) {
   }
 
   // Action links
-  document.getElementById("modalGithubBtn").href = project.modal.githubUrl;
-  document.getElementById("modalDemoBtn").href = project.modal.demoUrl;
+  const githubBtn = document.getElementById("modalGithubBtn");
+  const demoBtn = document.getElementById("modalDemoBtn");
+  if (githubBtn) {
+    githubBtn.href = project.modal.githubUrl;
+    if (project.id === "caffeine-finder") {
+      githubBtn.innerHTML = `
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+          <path d="M3 9h18"></path>
+          <path d="M9 21V9"></path>
+        </svg>
+        <span>Deliverable Slides (PDF)</span>
+      `;
+    } else {
+      githubBtn.innerHTML = `
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+          <path d="M9 18c-4.51 2-5-2-7-2"></path>
+        </svg>
+        <span>Source Code (.ipynb)</span>
+      `;
+    }
+  }
+
+  if (demoBtn) {
+    demoBtn.href = project.modal.demoUrl;
+    if (project.id === "caffeine-finder") {
+      demoBtn.innerHTML = `
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        <span>Case Study (PDF)</span>
+      `;
+    } else {
+      demoBtn.innerHTML = `
+        <span>Interactive Notebook</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      `;
+    }
+  }
 
   modal.showModal();
 }
@@ -604,6 +1017,9 @@ function setTheme(theme) {
   if (performanceChart) {
     initOrUpdateChart();
   }
+  if (burndownChart) {
+    initOrUpdateBurndownChart();
+  }
 }
 
 // ==========================================
@@ -677,6 +1093,31 @@ function setupFiltersAndControls() {
       btn.classList.add("active");
       const category = btn.getAttribute("data-filter");
       renderProjects(category);
+
+      const cards = document.querySelectorAll(".project-feature-card");
+      cards.forEach(card => {
+        const cardCategory = card.getAttribute("data-category");
+        if (category === "all" || cardCategory === category) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+
+      if (category === "all" || category === "ml") {
+        setTimeout(() => {
+          if (performanceChart) performanceChart.resize();
+        }, 60);
+      }
+      if (category === "all" || category === "agile") {
+        setTimeout(() => {
+          if (burndownChart) {
+            burndownChart.resize();
+          } else {
+            initOrUpdateBurndownChart();
+          }
+        }, 60);
+      }
     });
   });
 
@@ -780,11 +1221,13 @@ document.addEventListener("DOMContentLoaded", () => {
   setupModal();
   setupContactAndClipboard();
   setupFiltersAndControls();
+  setupCaffeineSandbox();
   setupScrollspy();
   setupResumeUploader();
 
-  // Initialize chart
+  // Initialize charts
   setTimeout(() => {
     initOrUpdateChart();
+    initOrUpdateBurndownChart();
   }, 100);
 });

@@ -754,6 +754,254 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
 }
 
+/* Projects Category Filter Bar */
+.projects-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.75rem;
+}
+
+.filter-btn {
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  border: 1.5px solid var(--border-dark);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.filter-btn:hover {
+  background: var(--bg-subtle);
+  transform: translateY(-1px);
+}
+
+.filter-btn.active {
+  background: var(--text-primary);
+  color: var(--bg-base);
+  border-color: var(--text-primary);
+  box-shadow: var(--shadow-subtle);
+}
+
+/* Caffeine Finder Hero Header & Logo */
+.caffeine-hero-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.35rem;
+}
+
+.caffeine-logo-wrapper {
+  width: 88px;
+  height: 88px;
+  border-radius: 20px;
+  border: 1.5px solid var(--border-dark);
+  background: var(--bg-surface);
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  box-shadow: var(--shadow-subtle);
+}
+
+.caffeine-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+}
+
+.caffeine-title-wrapper {
+  flex: 1;
+}
+
+.scrum-team-roster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-top: 0.45rem;
+  line-height: 1.5;
+}
+
+.roster-divider {
+  color: var(--text-muted);
+  font-weight: 800;
+}
+
+/* Caffeine Interactive Sandbox Tabs */
+.caffeine-toggle-btn {
+  padding: 0.4rem 0.95rem;
+  border-radius: 9999px;
+  border: 1.5px solid var(--border-subtle);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.caffeine-toggle-btn:hover {
+  border-color: var(--border-dark);
+}
+
+.caffeine-toggle-btn.active-toggle {
+  border-color: var(--border-dark);
+  font-weight: 800;
+  background: var(--bg-surface-elevated);
+}
+
+.caffeine-tab-pane {
+  display: block;
+  animation: fadeIn 0.25s ease;
+}
+
+.caffeine-tab-pane.is-hidden {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Agile Backlog Table */
+.agile-table-wrapper {
+  overflow-x: auto;
+  border: 1.5px solid var(--border-dark);
+  border-radius: 16px;
+  background: var(--bg-surface);
+}
+
+.agile-backlog-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+  text-align: left;
+}
+
+.agile-backlog-table th {
+  background: var(--bg-subtle);
+  padding: 0.85rem 1.15rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.74rem;
+  color: var(--text-primary);
+  border-bottom: 1.5px solid var(--border-dark);
+}
+
+.agile-backlog-table td {
+  padding: 0.85rem 1.15rem;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  vertical-align: middle;
+}
+
+.agile-backlog-table tr:hover td {
+  background: var(--bg-surface-elevated);
+}
+
+.agile-backlog-table tr:last-child td {
+  border-bottom: none;
+}
+
+.agile-points-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  background: var(--bg-base);
+  border: 1.5px solid var(--border-dark);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  font-size: 0.76rem;
+  color: var(--text-primary);
+}
+
+/* Retrospective 3-Column Matrix */
+.retro-columns-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.retro-column-card {
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-dark);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.retro-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1.5px solid var(--border-subtle);
+}
+
+.retro-card-header.success {
+  color: #059669;
+}
+
+.retro-card-header.warning {
+  color: #d97706;
+}
+
+.retro-card-header.improve {
+  color: var(--accent-blue);
+}
+
+.retro-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.retro-list li {
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.retro-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  font-weight: 900;
+  color: var(--text-primary);
+}
+
+
 /* ==========================================
    Resume & Experience Section
    ========================================== */
@@ -1324,9 +1572,16 @@ dialog.project-modal::backdrop {
 
   .edu-skills-grid,
   .project-notebook-figures-grid,
-  .contact-split-grid {
+  .contact-split-grid,
+  .retro-columns-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
+  }
+
+  .caffeine-hero-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
   }
 
   .mobile-toggle {
