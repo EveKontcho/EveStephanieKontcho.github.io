@@ -739,17 +739,591 @@ function initOrUpdateBurndownChart() {
   });
 }
 
+// ==========================================
+// 2b. Interactive Slide Deck Engine (10 Slides)
+// ==========================================
+const SLIDES_DATA = [
+  // Slide 1: Title & Team
+  `
+  <div style="text-align: center; padding: 1.5rem 1rem; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 280px;">
+    <div style="width: 76px; height: 76px; border-radius: 18px; border: 1.5px solid var(--border-dark); overflow: hidden; background: var(--bg-surface); padding: 4px; margin-bottom: 1rem; box-shadow: var(--shadow-subtle);">
+      <img src="caffeine_finder_logo.png" alt="Caffeine Finder Logo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px; display: block;">
+    </div>
+    <h2 class="slide-title" style="margin-bottom: 0.25rem; font-size: clamp(1.6rem, 3.2vw, 2.3rem);">CAFFEINE FINDER</h2>
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.5rem;">
+      Agile Sprint Deliverable · Louisiana State University
+    </div>
+    <div style="background: var(--bg-surface-elevated); border: 1.5px solid var(--border-dark); border-radius: 14px; padding: 1.15rem 1.75rem; text-align: left; max-width: 620px; width: 100%; box-shadow: var(--shadow-subtle);">
+      <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.86rem;">
+        <div><strong style="color: #059669; font-weight: 800;">Scrum Master:</strong> <span style="font-weight: 700; color: var(--text-primary);">Eve Kontcho</span></div>
+        <div><strong style="color: var(--text-primary); font-weight: 800;">Product Owner:</strong> <span>Aaliyah Ware</span></div>
+        <div><strong style="color: var(--text-primary); font-weight: 800;">Developers:</strong> <span>Thien Vu, Elizabeth Schlamel, Mika Devillier, Khalil Abdullah, Treylan Williams</span></div>
+      </div>
+    </div>
+  </div>
+  `,
+
+  // Slide 2: Overview
+  `
+  <div>
+    <h3 class="slide-title">OVERVIEW</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 0.75rem;">
+      <div style="background: var(--bg-surface-elevated); border: 1.5px solid var(--border-subtle); border-radius: 12px; padding: 1.25rem;">
+        <div style="font-size: 0.72rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: #dc2626; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem;">The Problem</div>
+        <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.5rem;">Fragmented Campus Information</h4>
+        <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.55;">
+          LSU students struggle to quickly find nearby open caffeine sources between lectures, exams, and late-night study sessions, often arriving at closed spots or waiting in unexpected lines.
+        </p>
+      </div>
+      <div style="background: var(--bg-surface-elevated); border: 1.5px solid var(--border-subtle); border-radius: 12px; padding: 1.25rem;">
+        <div style="font-size: 0.72rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: #059669; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem;">The Solution</div>
+        <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.5rem;">Caffeine Finder Mobile App</h4>
+        <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.55;">
+          A consolidated mobile directory mapping campus cafes, dining halls, vending machines, and pop-up events with live hours, turn-by-turn directions, menu prices, and dietary tags.
+        </p>
+      </div>
+      <div style="background: var(--bg-surface-elevated); border: 1.5px solid var(--border-subtle); border-radius: 12px; padding: 1.25rem;">
+        <div style="font-size: 0.72rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem;">Core Value</div>
+        <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.5rem;">Targeted Decision Support</h4>
+        <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.55;">
+          Filters for student budgets, Tiger Card / Dining Dollars compatibility, study amenities (Wi-Fi, outlets, seating), and dietary accommodations (dairy-free, vegan).
+        </p>
+      </div>
+    </div>
+  </div>
+  `,
+
+  // Slide 3: Product Backlog (Part 1 - Items 1 to 8)
+  `
+  <div>
+    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
+      <h3 class="slide-title" style="margin-bottom: 0;">PRODUCT BACKLOG (PART 1)</h3>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; color: var(--text-muted);">Items 1 – 8 · Geolocation & Operating Hours</span>
+    </div>
+    <div class="slide-grid">
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #1</span>
+          <span class="slide-badge-pts">20 pts</span>
+        </div>
+        <div class="slide-item-title">Display Caffeine Locations</div>
+        <div class="slide-item-desc">List nearby cafes, dining spots, and vendors with name, address, and description.</div>
+      </div>
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #2</span>
+          <span class="slide-badge-pts">5 pts</span>
+        </div>
+        <div class="slide-item-title">Location Details & Hours</div>
+        <div class="slide-item-desc">Show full operating schedules, descriptions, and contact info on location profiles.</div>
+      </div>
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #3</span>
+          <span class="slide-badge-pts">5 pts</span>
+        </div>
+        <div class="slide-item-title">Search by Location Name</div>
+        <div class="slide-item-desc">Type-ahead search bar to find a specific campus vendor or cafe in seconds.</div>
+      </div>
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #4</span>
+          <span class="slide-badge-pts">8 pts</span>
+        </div>
+        <div class="slide-item-title">Interactive Campus Map</div>
+        <div class="slide-item-desc">Render coffee locations as interactive labeled pins on an LSU campus map.</div>
+      </div>
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #5</span>
+          <span class="slide-badge-pts">13 pts</span>
+        </div>
+        <div class="slide-item-title">Current GPS Position</div>
+        <div class="slide-item-desc">Pinpoint student's live location on the map as reference for proximity calculation.</div>
+      </div>
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #6</span>
+          <span class="slide-badge-pts">5 pts</span>
+        </div>
+        <div class="slide-item-title">Sort by Distance</div>
+        <div class="slide-item-desc">Automatically order results from nearest to farthest based on current GPS coordinates.</div>
+      </div>
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #7</span>
+          <span class="slide-badge-pts">3 pts</span>
+        </div>
+        <div class="slide-item-title">Open / Closed Live Status</div>
+        <div class="slide-item-desc">Visual status pill showing whether each venue is currently open or closed right now.</div>
+      </div>
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #8</span>
+          <span class="slide-badge-pts">3 pts</span>
+        </div>
+        <div class="slide-item-title">"Open Now" Filter</div>
+        <div class="slide-item-desc">One-tap filter to hide all closed shops and display only currently open venues.</div>
+      </div>
+    </div>
+  </div>
+  `,
+
+  // Slide 4: Product Backlog (Part 2 - Items 9 to 15)
+  `
+  <div>
+    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
+      <h3 class="slide-title" style="margin-bottom: 0;">PRODUCT BACKLOG (PART 2)</h3>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; color: var(--text-muted);">Items 9 – 15 · Navigation, Menus & Dietary Filters</span>
+    </div>
+    <div class="slide-grid">
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #9</span>
+          <span class="slide-badge-pts">20 pts</span>
+        </div>
+        <div class="slide-item-title">Navigation Directions</div>
+        <div class="slide-item-desc">Turn-by-turn walking and driving navigation to selected campus locations.</div>
+      </div>
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #10</span>
+          <span class="slide-badge-pts">5 pts</span>
+        </div>
+        <div class="slide-item-title">Display Drink Menus</div>
+        <div class="slide-item-desc">Comprehensive beverage lists with item names, sizes, and pricing details.</div>
+      </div>
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #11</span>
+          <span class="slide-badge-pts">5 pts</span>
+        </div>
+        <div class="slide-item-title">Drink Category Filters</div>
+        <div class="slide-item-desc">Filter choices by espresso, drip coffee, cold brew, tea, or canned energy drinks.</div>
+      </div>
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #12</span>
+          <span class="slide-badge-pts">8 pts</span>
+        </div>
+        <div class="slide-item-title">Dietary Preferences Filter</div>
+        <div class="slide-item-desc">Filter for dairy alternatives (oat, almond, soy), vegan, and sugar-free options.</div>
+      </div>
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #13</span>
+          <span class="slide-badge-pts">3 pts</span>
+        </div>
+        <div class="slide-item-title">Price Range Badges</div>
+        <div class="slide-item-desc">Clear price tier indicators ($, $$, $$$) to accommodate student budgets.</div>
+      </div>
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #14</span>
+          <span class="slide-badge-pts">8 pts</span>
+        </div>
+        <div class="slide-item-title">Mobile Order-Ahead Link</div>
+        <div class="slide-item-desc">Direct links to external online ordering systems (Starbucks, Grubhub Campus).</div>
+      </div>
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #15</span>
+          <span class="slide-badge-pts">3 pts</span>
+        </div>
+        <div class="slide-item-title">Favorites Bookmarking</div>
+        <div class="slide-item-desc">Save frequently visited coffee spots to a personalized favorites tray for 1-tap access.</div>
+      </div>
+    </div>
+  </div>
+  `,
+
+  // Slide 5: Product Backlog (Part 3 - Items 16 to 22)
+  `
+  <div>
+    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
+      <h3 class="slide-title" style="margin-bottom: 0;">PRODUCT BACKLOG (PART 3)</h3>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; color: var(--text-muted);">Items 16 – 22 · Campus Events & Study Amenities</span>
+    </div>
+    <div class="slide-grid">
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #16</span>
+          <span class="slide-badge-pts">5 pts</span>
+        </div>
+        <div class="slide-item-title">Campus Event Alerts</div>
+        <div class="slide-item-desc">Track club meetings, department socials, and campus events serving free coffee.</div>
+      </div>
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #17</span>
+          <span class="slide-badge-pts">3 pts</span>
+        </div>
+        <div class="slide-item-title">Free Event Filter</div>
+        <div class="slide-item-desc">Filter events by admission cost to highlight free coffee giveaways for students.</div>
+      </div>
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #18</span>
+          <span class="slide-badge-pts">3 pts</span>
+        </div>
+        <div class="slide-item-title">Date & Time Event Filter</div>
+        <div class="slide-item-desc">Find upcoming events happening today, tomorrow, or later this week.</div>
+      </div>
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #19</span>
+          <span class="slide-badge-pts">3 pts</span>
+        </div>
+        <div class="slide-item-title">Push Reminders for Events</div>
+        <div class="slide-item-desc">Set push notifications 15 minutes before an event starts so students don't miss it.</div>
+      </div>
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #20</span>
+          <span class="slide-badge-pts">5 pts</span>
+        </div>
+        <div class="slide-item-title">Study Seating Indicator</div>
+        <div class="slide-item-desc">Filter for locations with ample indoor or outdoor tables for individual and group study.</div>
+      </div>
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #21</span>
+          <span class="slide-badge-pts">3 pts</span>
+        </div>
+        <div class="slide-item-title">Free Wi-Fi Indicator</div>
+        <div class="slide-item-desc">Tag locations verified to support eduroam or high-speed guest Wi-Fi.</div>
+      </div>
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #22</span>
+          <span class="slide-badge-pts">5 pts</span>
+        </div>
+        <div class="slide-item-title">Power Outlets Availability</div>
+        <div class="slide-item-desc">Tag venues with accessible wall plugs for charging laptops and devices.</div>
+      </div>
+    </div>
+  </div>
+  `,
+
+  // Slide 6: Product Backlog (Part 4 - Items 23 to 29)
+  `
+  <div>
+    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
+      <h3 class="slide-title" style="margin-bottom: 0;">PRODUCT BACKLOG (PART 4)</h3>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; color: var(--text-muted);">Items 23 – 29 · Reviews, Community & Moderation</span>
+    </div>
+    <div class="slide-grid">
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #23</span>
+          <span class="slide-badge-pts">5 pts</span>
+        </div>
+        <div class="slide-item-title">1 – 5 Star Rating System</div>
+        <div class="slide-item-desc">Allow students to rate coffee quality, service speed, and study environment.</div>
+      </div>
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #24</span>
+          <span class="slide-badge-pts">5 pts</span>
+        </div>
+        <div class="slide-item-title">User Reviews & Beverage Tips</div>
+        <div class="slide-item-desc">Post community advice regarding secret menu items, wait times, and noise levels.</div>
+      </div>
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #25</span>
+          <span class="slide-badge-pts">3 pts</span>
+        </div>
+        <div class="slide-item-title">Filter by Minimum Rating</div>
+        <div class="slide-item-desc">Filter results to show only locations with 4+ star community ratings.</div>
+      </div>
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #26</span>
+          <span class="slide-badge-pts">5 pts</span>
+        </div>
+        <div class="slide-item-title">Student Location Submissions</div>
+        <div class="slide-item-desc">Crowd-source newly installed vending machines or temporary pop-up stands.</div>
+      </div>
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #27</span>
+          <span class="slide-badge-pts">8 pts</span>
+        </div>
+        <div class="slide-item-title">Admin Moderation Dashboard</div>
+        <div class="slide-item-desc">Workflow for administrators to review and verify student submissions before publishing.</div>
+      </div>
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #28</span>
+          <span class="slide-badge-pts">5 pts</span>
+        </div>
+        <div class="slide-item-title">Tiger Card / Dining Dollars Tag</div>
+        <div class="slide-item-desc">Badge locations accepting official LSU student meal plans and campus cards.</div>
+      </div>
+      <div class="slide-item-card">
+        <div class="slide-item-head">
+          <span class="slide-item-num">Item #29</span>
+          <span class="slide-badge-pts">8 pts</span>
+        </div>
+        <div class="slide-item-title">Wait Time Estimates</div>
+        <div class="slide-item-desc">Crowd-sourced indicators of current wait times during peak morning and lunch rushes.</div>
+      </div>
+    </div>
+  </div>
+  `,
+
+  // Slide 7: Sprint Backlog (10 Stories Scoped / 87 Story Points)
+  `
+  <div>
+    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
+      <h3 class="slide-title" style="margin-bottom: 0;">SPRINT BACKLOG</h3>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 800; color: #059669;">10-Day Sprint · 87 Story Points Scoped</span>
+    </div>
+    <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.5;">
+      Facilitated by Scrum Master Eve Kontcho using Planning Poker (Fibonacci scale: 1, 2, 3, 5, 8, 13, 20). The 7-person team committed to 10 foundational stories for the MVP deliverable:
+    </p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.65rem;">
+      <div class="slide-item-card" style="border-left: 3px solid #059669;">
+        <div class="slide-item-head"><span class="slide-item-num">#1 Display Locations</span><span class="slide-badge-pts">20 pts</span></div>
+        <div class="slide-item-desc">List nearby cafes, restaurants, and campus vendors with descriptions.</div>
+      </div>
+      <div class="slide-item-card" style="border-left: 3px solid #059669;">
+        <div class="slide-item-head"><span class="slide-item-num">#2 Details & Hours</span><span class="slide-badge-pts">5 pts</span></div>
+        <div class="slide-item-desc">Show full addresses, descriptions, and operating schedules.</div>
+      </div>
+      <div class="slide-item-card" style="border-left: 3px solid #059669;">
+        <div class="slide-item-head"><span class="slide-item-num">#3 Search by Name</span><span class="slide-badge-pts">5 pts</span></div>
+        <div class="slide-item-desc">Quickly find specific cafes or dining locations by typing a keyword.</div>
+      </div>
+      <div class="slide-item-card" style="border-left: 3px solid #059669;">
+        <div class="slide-item-head"><span class="slide-item-num">#4 Campus Map Pins</span><span class="slide-badge-pts">8 pts</span></div>
+        <div class="slide-item-desc">Render coffee locations as labeled map pins for geographic reference.</div>
+      </div>
+      <div class="slide-item-card" style="border-left: 3px solid #059669;">
+        <div class="slide-item-head"><span class="slide-item-num">#5 GPS User Position</span><span class="slide-badge-pts">13 pts</span></div>
+        <div class="slide-item-desc">Show student's current position on the map to calculate proximity.</div>
+      </div>
+      <div class="slide-item-card" style="border-left: 3px solid #059669;">
+        <div class="slide-item-head"><span class="slide-item-num">#6 Sort by Distance</span><span class="slide-badge-pts">5 pts</span></div>
+        <div class="slide-item-desc">Order search results from nearest to farthest based on current position.</div>
+      </div>
+      <div class="slide-item-card" style="border-left: 3px solid #059669;">
+        <div class="slide-item-head"><span class="slide-item-num">#7 Open / Closed Status</span><span class="slide-badge-pts">3 pts</span></div>
+        <div class="slide-item-desc">Indicate whether a venue is currently open or closed at search time.</div>
+      </div>
+      <div class="slide-item-card" style="border-left: 3px solid #059669;">
+        <div class="slide-item-head"><span class="slide-item-num">#8 Filter to Open Now</span><span class="slide-badge-pts">3 pts</span></div>
+        <div class="slide-item-desc">Hide closed locations to show only currently open options.</div>
+      </div>
+      <div class="slide-item-card" style="border-left: 3px solid #059669;">
+        <div class="slide-item-head"><span class="slide-item-num">#9 Turn-by-Turn Navigation</span><span class="slide-badge-pts">20 pts</span></div>
+        <div class="slide-item-desc">Launch routing directions from student's location to chosen destination.</div>
+      </div>
+      <div class="slide-item-card" style="border-left: 3px solid #059669;">
+        <div class="slide-item-head"><span class="slide-item-num">#10 Display Drink Menus</span><span class="slide-badge-pts">5 pts</span></div>
+        <div class="slide-item-desc">View drink offerings, categories, and item price information.</div>
+      </div>
+    </div>
+  </div>
+  `,
+
+  // Slide 8: Sprint Burndown
+  `
+  <div>
+    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
+      <h3 class="slide-title" style="margin-bottom: 0;">SPRINT BURNDOWN</h3>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 800; color: #059669;">87 Story Points · 100% Velocity Fulfillment</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 0.5rem;">
+      <div style="background: var(--bg-surface-elevated); border: 1.5px solid var(--border-subtle); border-radius: 12px; padding: 1.25rem;">
+        <div style="font-size: 0.72rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.35rem;">Velocity Tracking</div>
+        <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.5rem;">Cadence & Standup Governance</h4>
+        <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.55;">
+          As Scrum Master, I tracked progress daily against the 8.7 pts/day ideal trajectory. Daily standups cleared technical roadblocks around GPS precision and routing modals, allowing the team to burn down 87 points to zero by Day 10.
+        </p>
+      </div>
+      <div style="background: var(--bg-surface-elevated); border: 1.5px solid var(--border-subtle); border-radius: 12px; padding: 1.25rem;">
+        <div style="font-size: 0.72rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: #059669; text-transform: uppercase; margin-bottom: 0.35rem;">Sprint Results</div>
+        <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.5rem;">Zero Unfinished Velocity Debt</h4>
+        <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.55;">
+          All 10 user stories met their Definition of Done (DoD). The application was packaged on time with zero spillover into subsequent sprints. View the <strong>Sprint Burndown</strong> tab above to interact with the full Chart.js curve.
+        </p>
+      </div>
+    </div>
+  </div>
+  `,
+
+  // Slide 9: Retrospective
+  `
+  <div>
+    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
+      <h3 class="slide-title" style="margin-bottom: 0;">RETROSPECTIVE</h3>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; color: var(--text-muted);">Inspect & Adapt Ceremony Facilitation</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 0.5rem;">
+      <div style="background: var(--bg-surface-elevated); border: 1.5px solid var(--border-subtle); border-radius: 12px; padding: 1.15rem;">
+        <div style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.78rem; font-weight: 800; color: #059669; margin-bottom: 0.6rem; text-transform: uppercase;">
+          <span>What Went Right</span>
+        </div>
+        <ul style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.55; padding-left: 1rem; margin: 0;">
+          <li>High-engagement Planning Poker discussions</li>
+          <li>Strong alignment between PO, SM, and devs</li>
+          <li>Clear, student-centric user stories</li>
+        </ul>
+      </div>
+      <div style="background: var(--bg-surface-elevated); border: 1.5px solid var(--border-subtle); border-radius: 12px; padding: 1.15rem;">
+        <div style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.78rem; font-weight: 800; color: #d97706; margin-bottom: 0.6rem; text-transform: uppercase;">
+          <span>Challenges Identified</span>
+        </div>
+        <ul style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.55; padding-left: 1rem; margin: 0;">
+          <li>Overlapping backlog feature boundaries</li>
+          <li>Technical complexity in defining navigation stories</li>
+          <li>Initial communication spread across split channels</li>
+        </ul>
+      </div>
+      <div style="background: var(--bg-surface-elevated); border: 1.5px solid var(--border-subtle); border-radius: 12px; padding: 1.15rem;">
+        <div style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.78rem; font-weight: 800; color: var(--accent-blue); margin-bottom: 0.6rem; text-transform: uppercase;">
+          <span>How We Improved</span>
+        </div>
+        <ul style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.55; padding-left: 1rem; margin: 0;">
+          <li>Conducted pre-planning technical spikes</li>
+          <li>Established strict Acceptance Criteria (DoD)</li>
+          <li>Centralized status in shared project board</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  `,
+
+  // Slide 10: Sprint Complete & Continuous Delivery ("Thank You")
+  `
+  <div style="text-align: center; padding: 1.5rem 1rem; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 280px;">
+    <span style="display: inline-block; padding: 0.3rem 0.85rem; border-radius: 9999px; background: rgba(5, 150, 105, 0.12); color: #059669; border: 1.5px solid #059669; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 1rem; font-family: 'JetBrains Mono', monospace;">
+      Sprint 1 Successfully Delivered
+    </span>
+    <h2 class="slide-title" style="margin-bottom: 0.5rem; font-size: clamp(1.8rem, 3.5vw, 2.5rem);">THANK YOU</h2>
+    <p style="max-width: 650px; margin: 0 auto 1.5rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
+      The Caffeine Finder MVP was delivered on time with 100% of committed story points burned down (87 / 87 pts). Prepared and presented by Scrum Master Eve Kontcho as an applied Agile deliverable demonstrating Certified ScrumMaster (CSM) readiness.
+    </p>
+    <div style="display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap;">
+      <a href="caffeine_finder_case_study.pdf" target="_blank" rel="noopener noreferrer" class="slide-nav-btn" style="text-decoration: none;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+        </svg>
+        <span>Read Case Study PDF</span>
+      </a>
+      <a href="caffeine_finder_slides.pdf" target="_blank" rel="noopener noreferrer" class="slide-nav-btn" style="text-decoration: none;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+          <path d="M3 9h18"></path>
+          <path d="M9 21V9"></path>
+        </svg>
+        <span>Download Slide Deck PDF</span>
+      </a>
+    </div>
+  </div>
+  `
+];
+
+let currentSlideIndex = 0;
+
+function setupSlideDeck() {
+  const slideBody = document.getElementById("slideBodyContainer");
+  const prevBtn = document.getElementById("prevSlideBtn");
+  const nextBtn = document.getElementById("nextSlideBtn");
+  const counterLabel = document.getElementById("slideCounterLabel");
+  const badgeNum = document.getElementById("slideBadgeNum");
+  const dotsContainer = document.getElementById("slideDotsContainer");
+
+  if (!slideBody) return;
+
+  function goToSlide(index) {
+    if (index < 0 || index >= SLIDES_DATA.length) return;
+    currentSlideIndex = index;
+    renderCurrentSlide();
+  }
+
+  function renderCurrentSlide() {
+    slideBody.innerHTML = SLIDES_DATA[currentSlideIndex];
+    if (badgeNum) badgeNum.textContent = String(currentSlideIndex + 1);
+    if (counterLabel) counterLabel.textContent = `Slide ${currentSlideIndex + 1} of ${SLIDES_DATA.length}`;
+
+    if (prevBtn) prevBtn.disabled = currentSlideIndex === 0;
+    if (nextBtn) nextBtn.disabled = currentSlideIndex === SLIDES_DATA.length - 1;
+
+    if (dotsContainer) {
+      dotsContainer.querySelectorAll(".slide-dot").forEach((dot, i) => {
+        dot.classList.toggle("active", i === currentSlideIndex);
+      });
+    }
+  }
+
+  // Populate dots
+  if (dotsContainer) {
+    dotsContainer.innerHTML = SLIDES_DATA.map((_, i) => `
+      <div class="slide-dot ${i === 0 ? "active" : ""}" data-slide-index="${i}" title="Slide ${i + 1}"></div>
+    `).join("");
+
+    dotsContainer.querySelectorAll(".slide-dot").forEach(dot => {
+      dot.addEventListener("click", () => {
+        const idx = parseInt(dot.getAttribute("data-slide-index"), 10);
+        goToSlide(idx);
+      });
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+      if (currentSlideIndex > 0) goToSlide(currentSlideIndex - 1);
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      if (currentSlideIndex < SLIDES_DATA.length - 1) goToSlide(currentSlideIndex + 1);
+    });
+  }
+
+  // Keyboard navigation
+  document.addEventListener("keydown", (e) => {
+    const slidesContainer = document.getElementById("caffeineSlidesContainer");
+    if (!slidesContainer || slidesContainer.classList.contains("is-hidden")) return;
+    if (e.key === "ArrowLeft") {
+      if (currentSlideIndex > 0) goToSlide(currentSlideIndex - 1);
+    } else if (e.key === "ArrowRight") {
+      if (currentSlideIndex < SLIDES_DATA.length - 1) goToSlide(currentSlideIndex + 1);
+    }
+  });
+
+  // Initial render
+  goToSlide(0);
+}
+
 function setupCaffeineSandbox() {
   const toggleButtons = document.querySelectorAll(".caffeine-toggle-btn");
   const subheadTitle = document.getElementById("caffeineDynamicTitle");
+  const slidesPane = document.getElementById("caffeineSlidesContainer");
+  const caseStudyPane = document.getElementById("caffeineCaseStudyContainer");
   const burndownPane = document.getElementById("caffeineBurndownContainer");
   const backlogPane = document.getElementById("caffeineBacklogContainer");
   const retroPane = document.getElementById("caffeineRetroContainer");
 
   const TITLES = {
+    slides: "Deliverable Slide Deck: 10-Slide Agile Presentation for LSU Leadership",
+    "case-study": "Written Case Study Document: Certified ScrumMaster (CSM) Applied Deliverable",
     burndown: "Sprint Burndown Velocity: Tracking 87 Story Points to Zero Across 10 Days",
     backlog: "Sprint Backlog: 10 Prioritized User Stories Scoped via Planning Poker",
     retro: "Agile Retrospective: Inspect & Adapt Analysis for Continuous Delivery"
+  };
+
+  const PANES = {
+    slides: slidesPane,
+    "case-study": caseStudyPane,
+    burndown: burndownPane,
+    backlog: backlogPane,
+    retro: retroPane
   };
 
   toggleButtons.forEach(btn => {
@@ -762,9 +1336,12 @@ function setupCaffeineSandbox() {
         subheadTitle.textContent = TITLES[mode];
       }
 
-      if (burndownPane) burndownPane.classList.toggle("is-hidden", mode !== "burndown");
-      if (backlogPane) backlogPane.classList.toggle("is-hidden", mode !== "backlog");
-      if (retroPane) retroPane.classList.toggle("is-hidden", mode !== "retro");
+      Object.keys(PANES).forEach(key => {
+        const pane = PANES[key];
+        if (pane) {
+          pane.classList.toggle("is-hidden", key !== mode);
+        }
+      });
 
       if (mode === "burndown") {
         setTimeout(() => {
@@ -1222,6 +1799,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupContactAndClipboard();
   setupFiltersAndControls();
   setupCaffeineSandbox();
+  setupSlideDeck();
   setupScrollspy();
   setupResumeUploader();
 
